@@ -45,6 +45,9 @@ class Register extends React.Component {
             <Form.Group controlId="formCheckboxReg">
                 <Form.Check type="checkbox" label="Agree to something" />
             </Form.Group>
+            <Form.Group>
+            <a href="">Already have an account? login here.</a>
+            </Form.Group>
             <Button variant="primary" type="submit">
                 Submit
             </Button>
