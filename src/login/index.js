@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 
-class Register extends React.Component {
+class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -22,16 +22,16 @@ class Register extends React.Component {
     }
 
     handleSubmit(event) {
-        const auth = firebase.auth();
-        const promise = auth.createUserWithEmailAndPassword(this.state.email,this.state.pass);
-        promise.catch(e => console.log(e.message));
-    event.preventDefault();
+    //     const auth = firebase.auth();
+    //     const promise = auth.createUserWithEmailAndPassword(this.state.email,this.state.pass);
+    //     promise.catch(e => console.log(e.message));
+    // event.preventDefault();
     }
 
     render () {
       return (
         <Form onSubmit={this.handleSubmit}>
-            <h1>Register</h1>
+            <h1>Login</h1>
             <Form.Group controlId="formEmailReg">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" onChange={this.handleChange} />
@@ -44,18 +44,17 @@ class Register extends React.Component {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" onChange={this.handleChange} />
             </Form.Group>
-            <Form.Group controlId="formCheckboxReg">
-                <Form.Check type="checkbox" label="Agree to something" />
-            </Form.Group>
             <Form.Group>
-            <p><Link to="/login">Already have an account? login here.</Link></p>
+            <p><Link to="/">Don't have an account? Register here.</Link></p>
             </Form.Group>
+            <Link to="/student-home">
             <Button variant="primary" type="submit">
-                Submit
+                Login
             </Button>
+            </Link>
         </Form>
       );
     }
   }
 
-  export default Register;
+  export default Login;
