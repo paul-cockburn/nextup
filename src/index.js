@@ -6,7 +6,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const firebaseConfig = {
+var firebaseConfig = {
     apiKey: "AIzaSyCD2rr0B7DuRGPcj3nbltoqWmiAao1hspI",
     authDomain: "nextup-88fad.firebaseapp.com",
     databaseURL: "https://nextup-88fad.firebaseio.com",
@@ -16,7 +16,24 @@ const firebaseConfig = {
     appId: "1:167783911604:web:c4db51b041505ce86247e1",
     measurementId: "G-BZJGKWGTZM"
 };
+
+
 firebase.initializeApp(firebaseConfig);
+
+var db = firebase.firestore();
+
+db.collection("users").add({
+    first: "Ada",
+    last: "Lovelace",
+    born: 1815
+})
+.then(function(docRef) {
+    console.log("Document written with ID: ", docRef.id);
+})
+.catch(function(error) {
+    console.error("Error adding document: ", error);
+});
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
