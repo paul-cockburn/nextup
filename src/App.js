@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Register from './register';
 import Login from './login';
 import StudentHome from './studentHome';
+import RequestHelp from './requestHelp';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -22,7 +23,7 @@ function App() {
               <Route path="/" exact component={Register}  />
               <Route path="/login" exact component={Login}  />
               <Route path="/student-home" exact component={StudentHome}  />
-
+              <Route path="/request-help" exact component={RequestHelp}  />
             </Col>
             <Col></Col>
           </Row>

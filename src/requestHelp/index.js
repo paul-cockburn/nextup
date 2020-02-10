@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 
-class StudentHome extends React.Component {
+class RequestHelp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -22,10 +22,10 @@ class StudentHome extends React.Component {
     render () {
       return (
           <div>
-            <h1>Home</h1>
-            <Link to="/request-help">
+            <h1>Request Help</h1>
+            <Link to="/student-home">
                 <Button variant="primary" type="submit">
-                    Request help
+                    Cancel
                 </Button>
             </Link>
         </div>
@@ -33,4 +33,4 @@ class StudentHome extends React.Component {
     }
   }
 
-  export default StudentHome;
+  export default RequestHelp;
