@@ -14,9 +14,25 @@ class RequestHelp extends React.Component {
     }
     
     handleChange(event) {
+      var key = event.target.id
+      var val = event.target.value
+      var obj  = {}
+      obj[key] = val
+      this.setState(obj)
+      console.log(this.state)
     }
 
     handleSubmit(event) {
+      var db = firebase.firestore();
+
+      db.collection("requests").add(this.state)
+      
+      .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function(error) {
+          console.error("Error adding document: ", error);
+      });
     }
 
     render () {
@@ -35,7 +51,7 @@ class RequestHelp extends React.Component {
 
               <Form.Group controlId="formStudentLocation">
                   <Form.Label>Location</Form.Label>
-                  <Form.Control placeholder="Describe where you are sitting" onChange={this.handleChange} />
+                  <Form.Control type="studentLocation" placeholder="Describe where you are sitting" onChange={this.handleChange} />
                   <Form.Text className="text-muted">
                       E.g. I'm sitting in EM2.45 in the back left corner on computer 15.
                   </Form.Text>
@@ -43,12 +59,13 @@ class RequestHelp extends React.Component {
 
               <Form.Group controlId="formIssuePriority">
                 <Form.Label>Priority</Form.Label>
-                <Form.Control as="select">
+                <Form.Control type="issuePriority" as="select" onChange={this.handleChange}>
                   <option>Low</option>
                   <option>Medium</option>
                   <option>High</option>
                 </Form.Control>
               </Form.Group>
+
 
               <Button variant="primary" type="submit">
                   Submit

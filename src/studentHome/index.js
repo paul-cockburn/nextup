@@ -17,6 +17,18 @@ class StudentHome extends React.Component {
     }
 
     handleSubmit(event) {
+      var db = firebase.firestore();
+      db.collection("requests").get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            var key = doc.id
+            var val = doc.data()
+            var obj  = {}
+            obj[key] = val
+            console.log(obj)
+        });
+    });
     }
 
     render () {
@@ -28,6 +40,9 @@ class StudentHome extends React.Component {
                     Request help
                 </Button>
             </Link>
+            <h2>Your Requests</h2>
+            {/* <p>{this.state}</p> */}
+            <Button onClick={this.handleSubmit}>Refresh</Button>
         </div>
       );
     }
