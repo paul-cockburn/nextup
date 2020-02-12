@@ -45,7 +45,7 @@ class RequestHelp extends React.Component {
             <h1>Request Help</h1>
             
             <Form onSubmit={this.handleSubmit}>
-              <Form.Group controlId="formIssueDescription">
+              <Form.Group controlId="requestDescription">
                   <Form.Label>Description</Form.Label>
                   <Form.Control as="textarea" rows="3" placeholder="Describe why you are requesting help" onChange={this.handleChange} />
                   <Form.Text className="text-muted">
@@ -53,7 +53,7 @@ class RequestHelp extends React.Component {
                   </Form.Text>
               </Form.Group>
 
-              <Form.Group controlId="formStudentLocation">
+              <Form.Group controlId="requestLocation">
                   <Form.Label>Location</Form.Label>
                   <Form.Control type="studentLocation" placeholder="Describe where you are sitting" onChange={this.handleChange} />
                   <Form.Text className="text-muted">
@@ -61,7 +61,7 @@ class RequestHelp extends React.Component {
                   </Form.Text>
               </Form.Group>
 
-              <Form.Group controlId="formIssuePriority">
+              <Form.Group controlId="requestPriority">
                 <Form.Label>Priority</Form.Label>
                 <Form.Control type="issuePriority" as="select" onChange={this.handleChange}>
                   <option>Low</option>

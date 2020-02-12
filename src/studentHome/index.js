@@ -23,7 +23,7 @@ class StudentHome extends React.Component {
     getRequest(){
       var db = firebase.firestore();
       console.log("Fetching Data");
-      let requestRef = db.collection("requests").doc("avZRaYmX9YEZ1SJhAy4p");
+      let requestRef = db.collection("requests").doc("Q6GLuoXjLXyNk4hPqZJl");
       let getDoc = requestRef.get()
         .then(doc => {
           if(!doc.exists) {
