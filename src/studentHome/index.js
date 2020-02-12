@@ -19,6 +19,27 @@ class StudentHome extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    getRequest(){
+      var db = firebase.firestore();
+      console.log("Fetching Data");
+      let requestRef = db.collection("requests").doc("avZRaYmX9YEZ1SJhAy4p");
+      let getDoc = requestRef.get()
+        .then(doc => {
+          if(!doc.exists) {
+            console.log("No such documnet!");
+          }else{
+            console.log("Document data: ", doc.data());
+          }
+        })
+        .catch(err => {
+          console.log("Error getting document", err);
+        });
+    }
+
+    componentDidMount(){
+      this.getRequest();
+    }
     
     handleChange(event) {
     }
