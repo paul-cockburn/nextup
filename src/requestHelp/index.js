@@ -66,16 +66,17 @@ class RequestHelp extends React.Component {
                 </Form.Control>
               </Form.Group>
 
-
-              <Button variant="primary" type="submit">
-                  Submit
-              </Button>
+              <Link to="/student-home">
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+              </Link>
 
               <Link to="/student-home">
                 <Button variant="primary" type="submit">
                     Cancel
                 </Button>
-            </Link>
+              </Link>
           </Form>
         </div>
       );
