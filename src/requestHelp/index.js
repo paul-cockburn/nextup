@@ -1,7 +1,7 @@
 import * as firebase from "firebase";
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 
 class RequestHelp extends React.Component {
@@ -23,12 +23,16 @@ class RequestHelp extends React.Component {
     }
 
     handleSubmit(event) {
+      console.log(event)
+
       var db = firebase.firestore();
 
       db.collection("requests").add(this.state)
+
       
       .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
+          this.props.history.push('/student-home')
       })
       .catch(function(error) {
           console.error("Error adding document: ", error);
@@ -66,14 +70,14 @@ class RequestHelp extends React.Component {
                 </Form.Control>
               </Form.Group>
 
-              <Link to="/student-home">
+              {/* <Link to="/student-home"> */}
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
-              </Link>
+              {/* </Link> */}
 
               <Link to="/student-home">
-                <Button variant="primary" type="submit">
+                <Button variant="primary">
                     Cancel
                 </Button>
               </Link>
