@@ -27,9 +27,14 @@ class StudentHome extends React.Component {
       let getDoc = requestRef.get()
         .then(doc => {
           if(!doc.exists) {
-            console.log("No such documnet!");
+            console.log("No such document!");
           }else{
             console.log("Document data: ", doc.data());
+            this.setState({
+              requestDescription: doc.data().formIssueDescription,
+              requestLocation: doc.data().formIssueLocation,
+              requestPriority: doc.data().formIssuePriority
+            });
           }
         })
         .catch(err => {
