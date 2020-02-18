@@ -78,7 +78,10 @@ class StudentHome extends React.Component {
             <h2>Your Requests</h2>
 
             <RequestCard 
+              requestId = {this.state.requestId}
               requestDescription = {this.state.requestDescription}
+              requestTime = {this.state.requestTime}
+              requestClass = {this.state.requestClass}
               requestLocation = {this.state.requestLocation}
               requestPriority = {this.state.requestPriority}
             />
