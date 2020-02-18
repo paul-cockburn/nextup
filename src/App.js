@@ -6,6 +6,7 @@ import Register from './register';
 import Login from './login';
 import StudentHome from './studentHome';
 import RequestHelp from './requestHelp';
+import HelperHome from './helperHome';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -24,6 +25,7 @@ function App() {
               <Route path="/login" exact component={Login}  />
               <Route path="/student-home" exact component={StudentHome}  />
               <Route path="/request-help" exact component={RequestHelp}  />
+              <Route path="/helper-home" exact component={HelperHome}  />
             </Col>
             <Col></Col>
           </Row>
