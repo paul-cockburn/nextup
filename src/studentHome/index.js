@@ -32,11 +32,10 @@ class StudentHome extends React.Component {
           }else{
             console.log("Document data: ", doc.data());
             this.setState({
-              requestDescription: doc.data().formIssueDescription,
-              requestLocation: doc.data().formIssueLocation,
-              requestPriority: doc.data().formIssuePriority
+              requestDescription: doc.data().requestDescription,
+              requestLocation: doc.data().requestLocation,
+              requestPriority: doc.data().requestPriority
             });
-            // console.log(this.state)
           }
         })
         .catch(err => {
@@ -52,18 +51,18 @@ class StudentHome extends React.Component {
     }
 
     handleSubmit(event) {
-      var db = firebase.firestore();
-      db.collection("requests").get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            // console.log(doc.id, " => ", doc.data());
-            var key = doc.id
-            var val = doc.data()
-            var obj  = {}
-            obj[key] = val
-            // console.log(obj)
-        });
-    });
+      // var db = firebase.firestore();
+      // db.collection("requests").get().then(function(querySnapshot) {
+      //   querySnapshot.forEach(function(doc) {
+      //       // doc.data() is never undefined for query doc snapshots
+      //       // console.log(doc.id, " => ", doc.data());
+      //       var key = doc.id
+      //       var val = doc.data()
+      //       var obj  = {}
+      //       obj[key] = val
+      //       // console.log(obj)
+      //   });
+      // });
     }
 
     render () {
