@@ -3,6 +3,16 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, Redirect } from "react-router-dom";
 
+function getDateTime() {
+  var currentDate = new Date();
+
+  var date = currentDate.getDate();
+  var month = currentDate.getMonth();
+  var year = currentDate.getFullYear();
+  
+  var dateString = date + "-" +(month + 1) + "-" + year;
+  return dateString
+}
 
 class RequestHelp extends React.Component {
     constructor(props) {
@@ -11,6 +21,10 @@ class RequestHelp extends React.Component {
     
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount(){
+      this.setState({requestTime: getDateTime()})
     }
     
     handleChange(event) {
