@@ -106,7 +106,7 @@ class HelperHome extends React.Component {
 
         {Object.keys(requests).map(requestKey => (
             <RequestCard 
-                requestId = {requests[requestKey].requestId}
+                requestId = {requestKey}
                 requestDescription = {requests[requestKey].requestDescription}
                 requestTime = {requests[requestKey].requestTime}
                 requestClass = {requests[requestKey].requestClass}
