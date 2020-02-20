@@ -12,7 +12,7 @@ class RequestCard extends React.Component {
                 <Card.Header as="h5">Request ID: {this.props.requestId}</Card.Header>
                 <Card.Body>
                 <Card.Text>
-                    <strong>Time: </strong>{this.props.requestTime}
+                    <strong>Time: </strong>{Date(this.props.requestTime)}
                 </Card.Text>
                 <Card.Text>
                     <strong>Description: </strong>{this.props.requestDescription}
@@ -27,6 +27,8 @@ class RequestCard extends React.Component {
                 <strong>Priority: </strong>{this.props.requestPriority}
                 </Card.Text>
                 <Button variant="primary">Edit</Button>
+                <Button variant="primary">Accept</Button>
+                <Button variant="primary">Mark as Done</Button>
                 <Button variant="primary">Delete</Button>
                 </Card.Body>
             </Card>
