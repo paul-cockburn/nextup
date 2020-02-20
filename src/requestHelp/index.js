@@ -4,15 +4,10 @@ import { Button, Form } from 'react-bootstrap';
 import { Link, Redirect } from "react-router-dom";
 
 function getDateTime() {
-  var currentDate = new Date();
-
-  var date = currentDate.getDate();
-  var month = currentDate.getMonth();
-  var year = currentDate.getFullYear();
-  
-  var dateString = date + "-" +(month + 1) + "-" + year;
-  return dateString
+  var d = new Date();
+  return d
 }
+
 
 class RequestHelp extends React.Component {
     constructor(props) {
@@ -59,6 +54,11 @@ class RequestHelp extends React.Component {
             <h1>Request Help</h1>
             
             <Form onSubmit={this.handleSubmit}>
+              <Form.Group controlId="requestUser">
+                  <Form.Label>Email Address</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email address" onChange={this.handleChange} />
+              </Form.Group>
+
               <Form.Group controlId="requestDescription">
                   <Form.Label>Description</Form.Label>
                   <Form.Control as="textarea" rows="3" placeholder="Describe why you are requesting help" onChange={this.handleChange} />
@@ -83,13 +83,9 @@ class RequestHelp extends React.Component {
                   <option>High</option>
                 </Form.Control>
               </Form.Group>
-
-              {/* <Link to="/student-home"> */}
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-              {/* </Link> */}
-
+              <Button variant="primary" type="submit">
+                  Submit
+              </Button>
               <Link to="/student-home">
                 <Button variant="primary">
                     Cancel
