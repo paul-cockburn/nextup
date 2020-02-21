@@ -112,6 +112,7 @@ class HelperHome extends React.Component {
                 requestClass = {requests[requestKey].requestClass}
                 requestLocation = {requests[requestKey].requestLocation}
                 requestPriority = {requests[requestKey].requestPriority}
+                requestStatus = {requests[requestKey].requestStatus}
             />
         ))}
       </div>

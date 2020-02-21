@@ -1,9 +1,48 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
+import * as firebase from 'firebase';
 
 class RequestCard extends React.Component {
     constructor(props) {
         super(props);
+        this.handleEdit = this.handleEdit.bind(this);
+        this.handleAccept = this.handleAccept.bind(this);
+        this.handleDone = this.handleDone.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+
+    }
+
+    handleEdit(){
+    }
+
+    handleAccept(){
+        var db = firebase.firestore();
+
+        let cityRef = db.collection('requests').doc(this.props.requestId);
+
+        let setWithOptions = cityRef.set({
+            requestStatus: "In Progress"
+        }, {merge: true});
+    }
+
+    handleDone(){
+        var db = firebase.firestore();
+
+        let cityRef = db.collection('requests').doc(this.props.requestId);
+
+        let setWithOptions = cityRef.set({
+            requestStatus: "Completed"
+        }, {merge: true});
+    }
+
+    handleDelete(){
+        var db = firebase.firestore();
+
+        let cityRef = db.collection('requests').doc(this.props.requestId);
+
+        let setWithOptions = cityRef.set({
+            requestStatus: "Deleted"
+        }, {merge: true});
     }
   
     render () {
@@ -26,10 +65,10 @@ class RequestCard extends React.Component {
                 <Card.Text>
                 <strong>Priority: </strong>{this.props.requestPriority}
                 </Card.Text>
-                <Button variant="primary">Edit</Button>
-                <Button variant="primary">Accept</Button>
-                <Button variant="primary">Mark as Done</Button>
-                <Button variant="primary">Delete</Button>
+                <Button variant="primary" onClick={this.handleEdit}>Edit</Button>
+                <Button variant="primary" onClick={this.handleAccept}>Accept</Button>
+                <Button variant="primary" onClick={this.handleDone}>Mark as Done</Button>
+                <Button variant="primary" onClick={this.handleDelete}>Delete</Button>
                 </Card.Body>
             </Card>
         );

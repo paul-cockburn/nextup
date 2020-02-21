@@ -12,7 +12,7 @@ function getDateTime() {
 class RequestHelp extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {requestPriority: "Low"};
+        this.state = {requestPriority: "Low", requestStatus: "Waiting"};
     
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
