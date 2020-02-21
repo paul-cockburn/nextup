@@ -19,9 +19,12 @@ class HelperHome extends React.Component {
   
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.getRequests = this.getRequests.bind(this);
+      this.categoriseRequests = this.categoriseRequests.bind(this);
+
     }
 
-    getRequest(){
+    getRequests(){
         var db = firebase.firestore();
         let requestsRef = db.collection('requests');
         let getCol = requestsRef.get()
@@ -49,28 +52,31 @@ class HelperHome extends React.Component {
     }
 
     componentDidMount(){
-      this.getRequest();
+      this.getRequests();
+    }
+
+    categoriseRequests(){
+      var array = Array.from(Object.keys(this.state.requests), k => this.state.requests[k]);
+      console.log(array);
+
+      // var documents  = {}
+      // Object.keys(this.state.requests).map(requestKey => (
+      //   if(requestKey){
+      //     console.log("hey")
+      //   }
+      // ))
     }
     
     handleChange(event) {
     }
 
     handleSubmit(event) {
-      // var db = firebase.firestore();
-      // db.collection("requests").get().then(function(querySnapshot) {
-      //   querySnapshot.forEach(function(doc) {
-      //       // doc.data() is never undefined for query doc snapshots
-      //       // console.log(doc.id, " => ", doc.data());
-      //       var key = doc.id
-      //       var val = doc.data()
-      //       var obj  = {}
-      //       obj[key] = val
-      //       // console.log(obj)
-      //   });
-      // });
     }
 
     render () {
+      if (this.state.requests) {
+        this.categoriseRequests();
+      }
       return (
           <div>
             <h1>Home</h1>
@@ -79,17 +85,18 @@ class HelperHome extends React.Component {
                     Request help
                 </Button>
             </Link>
-            <h2>Your Requests</h2>
+            <h2>Requests Waiting</h2>
 
-            {/* <RequestCard 
-              requestId = {this.state.requestId}
-              requestDescription = {this.state.requestDescription}
-              requestTime = {this.state.requestTime}
-              requestClass = {this.state.requestClass}
-              requestLocation = {this.state.requestLocation}
-              requestPriority = {this.state.requestPriority}
-            /> */}
             <ReturnCards requests={this.state.requests}/>
+
+            <h2>Requests In Progress</h2>
+
+            <ReturnCards requests={this.state.requests}/>
+
+            <h2>Completed Requests</h2>
+
+            <ReturnCards requests={this.state.requests}/>
+
 
             <Button onClick={this.handleSubmit}>Refresh</Button>
         </div>
@@ -101,11 +108,11 @@ class HelperHome extends React.Component {
     if (!requests) {
       return <p>No requests</p>;
     }
+
     return (
       <div>
-
         {Object.keys(requests).map(requestKey => (
-            <RequestCard 
+            <RequestCard key={requestKey}
                 requestId = {requestKey}
                 requestDescription = {requests[requestKey].requestDescription}
                 requestTime = {requests[requestKey].requestTime}
