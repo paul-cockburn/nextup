@@ -56,8 +56,10 @@ class HelperHome extends React.Component {
     }
 
     categoriseRequests(){
-      var array = Array.from(Object.keys(this.state.requests), k => this.state.requests[k]);
-      console.log(array);
+      var requestsArray = Array.from(Object.keys(this.state.requests), k => this.state.requests[k]);
+      requestsArray.forEach(function (req) {
+        console.log(req.requestStatus);
+      });
 
       // var documents  = {}
       // Object.keys(this.state.requests).map(requestKey => (
