@@ -36,10 +36,8 @@ class RequestHelp extends React.Component {
     handleSubmit(event) {
       event.preventDefault();
       var db = firebase.firestore();
-      // let setDoc = db.collection('requests').doc(this.state.requestUser).set(this.state);
 
       db.collection("requests").add(this.state)
-      // alert("hello")
 
       .then(function(docRef) {
         alert("hello")
