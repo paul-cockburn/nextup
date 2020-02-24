@@ -80,11 +80,6 @@ class HelperHome extends React.Component {
       return (
           <div>
             <h1>Home</h1>
-            <Link to="/request-help">
-                <Button variant="primary" type="submit">
-                    Request help
-                </Button>
-            </Link>
             <h2>Requests Waiting</h2>
 
             <ReturnCards requests={this.state.requests}/>
