@@ -34,16 +34,36 @@ class HelperHome extends React.Component {
             return;
             }  
             var documents  = {}
+            var waitingReqs  = {}
+            var inProgReqs  = {}
+            var completedReqs  = {}
+            var deletedReqs  = {}
             snapshot.forEach(doc => {
                 console.log(doc.id, '=>', doc.data());
                 var docKey = doc.id
                 var docVal = doc.data()
                 documents[docKey] = docVal
+                if(doc.data().requestStatus=="Waiting"){
+                  waitingReqs[docKey] = docVal
+                }
+                if(doc.data().requestStatus=="In Progress"){
+                  inProgReqs[docKey] = docVal
+                }
+                if(doc.data().requestStatus=="Completed"){
+                  completedReqs[docKey] = docVal
+                }
+                if(doc.data().requestStatus=="Deleted"){
+                  deletedReqs[docKey] = docVal
+                }
             });
             var stateObject = {}
             stateObject["requests"] = documents
+            stateObject["waitingReqs"] = waitingReqs
+            stateObject["inProgReqs"] = inProgReqs
+            stateObject["completedReqs"] = completedReqs
+            stateObject["deletedReqs"] = deletedReqs
             this.setState(stateObject)
-            console.log(this.state.requests)
+            console.log("STATE", this.state)
         })
         .catch(err => {
             console.log('Error getting documents', err);
@@ -56,15 +76,19 @@ class HelperHome extends React.Component {
     }
 
     categoriseRequests(){
-      var requestsArray = Array.from(Object.keys(this.state.requests), k => this.state.requests[k]);
-      var waitingReqs  = {}
-      var inProgReqs  = {}
-      var completedReqs  = {}
-      var deletedReqs  = {}
-      requestsArray.forEach(function (req) {
-        console.log("request", req);
-
-      });
+      // var requestsArray = Array.from(Object.keys(this.state.requests), k => this.state.requests[k]);
+      // var waitingReqs  = {}
+      // var inProgReqs  = {}
+      // var completedReqs  = {}
+      // var deletedReqs  = {}
+      // requestsArray.forEach(function (req) {
+      //   var reqId = req.requestId
+      //   var reqVal = req
+      //   // console.log("request", req);
+      //   if(req.requestStatus=="Waiting"){
+          
+      //   }
+      // });
     }
     
     handleChange(event) {
