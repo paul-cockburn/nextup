@@ -57,16 +57,14 @@ class HelperHome extends React.Component {
 
     categoriseRequests(){
       var requestsArray = Array.from(Object.keys(this.state.requests), k => this.state.requests[k]);
+      var waitingReqs  = {}
+      var inProgReqs  = {}
+      var completedReqs  = {}
+      var deletedReqs  = {}
       requestsArray.forEach(function (req) {
-        console.log(req.requestStatus);
-      });
+        console.log("request", req);
 
-      // var documents  = {}
-      // Object.keys(this.state.requests).map(requestKey => (
-      //   if(requestKey){
-      //     console.log("hey")
-      //   }
-      // ))
+      });
     }
     
     handleChange(event) {
@@ -117,6 +115,7 @@ class HelperHome extends React.Component {
                 requestLocation = {requests[requestKey].requestLocation}
                 requestPriority = {requests[requestKey].requestPriority}
                 requestStatus = {requests[requestKey].requestStatus}
+                requestUser = {requests[requestKey].requestUser}
             />
         ))}
       </div>

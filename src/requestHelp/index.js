@@ -19,7 +19,9 @@ class RequestHelp extends React.Component {
     }
 
     componentDidMount(){
-      this.setState({requestTime: getDateTime()})
+      if(!this.state.requestTime){
+        this.setState({requestTime: getDateTime()})
+      }
     }
     
     handleChange(event) {
@@ -32,17 +34,25 @@ class RequestHelp extends React.Component {
     }
 
     handleSubmit(event) {
-      console.log(event)
-
+      event.preventDefault();
       var db = firebase.firestore();
+      // let setDoc = db.collection('requests').doc(this.state.requestUser).set(this.state);
 
       db.collection("requests").add(this.state)
+      // alert("hello")
 
-      
       .then(function(docRef) {
+        alert("hello")
+
           console.log("Document written with ID: ", docRef.id);
-          this.props.history.push('/student-home')
+          let cityRef = db.collection('requests').doc( docRef.id);
+          let setWithOptions = cityRef.set({
+              requestId: docRef.id
+          }, {merge: true});
+          // this.props.history.push('/student-home')
+
       })
+      
       .catch(function(error) {
           console.error("Error adding document: ", error);
       });
