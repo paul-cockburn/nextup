@@ -42,16 +42,16 @@ class HelperHome extends React.Component {
                 var docKey = doc.id
                 var docVal = doc.data()
                 documents[docKey] = docVal
-                if(doc.data().requestStatus=="Waiting"){
+                if(doc.data().requestStatus==="Waiting"){
                   waitingReqs[docKey] = docVal
                 }
-                if(doc.data().requestStatus=="In Progress"){
+                if(doc.data().requestStatus==="In Progress"){
                   inProgReqs[docKey] = docVal
                 }
-                if(doc.data().requestStatus=="Completed"){
+                if(doc.data().requestStatus==="Completed"){
                   completedReqs[docKey] = docVal
                 }
-                if(doc.data().requestStatus=="Deleted"){
+                if(doc.data().requestStatus==="Deleted"){
                   deletedReqs[docKey] = docVal
                 }
             });
@@ -94,6 +94,10 @@ class HelperHome extends React.Component {
             <h2>Completed Requests</h2>
 
             <ReturnCards requests={this.state.completedReqs}/>
+
+            <h2>Deleted Requests</h2>
+
+            <ReturnCards requests={this.state.deletedReqs}/>
 
 
             <Button onClick={this.handleSubmit}>Refresh</Button>

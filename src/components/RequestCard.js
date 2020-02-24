@@ -17,12 +17,14 @@ class RequestCard extends React.Component {
 
     handleAccept(){
         var db = firebase.firestore();
-
         let cityRef = db.collection('requests').doc(this.props.requestId);
 
         let setWithOptions = cityRef.set({
             requestStatus: "In Progress"
-        }, {merge: true});
+        }, {merge: true}).then(()=>{
+            window.location.reload(false);
+        });
+
     }
 
     handleDone(){
@@ -32,7 +34,10 @@ class RequestCard extends React.Component {
 
         let setWithOptions = cityRef.set({
             requestStatus: "Completed"
-        }, {merge: true});
+        }, {merge: true}).then(()=>{
+            window.location.reload(false);
+        });
+
     }
 
     handleDelete(){
@@ -42,7 +47,9 @@ class RequestCard extends React.Component {
 
         let setWithOptions = cityRef.set({
             requestStatus: "Deleted"
-        }, {merge: true});
+        }, {merge: true}).then(()=>{
+            window.location.reload(false);
+        });
     }
   
     render () {
@@ -64,6 +71,9 @@ class RequestCard extends React.Component {
                 </Card.Text>
                 <Card.Text>
                 <strong>Priority: </strong>{this.props.requestPriority}
+                </Card.Text>
+                <Card.Text>
+                <strong>Status: </strong>{this.props.requestStatus}
                 </Card.Text>
                 <Button variant="primary" onClick={this.handleEdit}>Edit</Button>
                 <Button variant="primary" onClick={this.handleAccept}>Accept</Button>
