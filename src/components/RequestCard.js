@@ -58,7 +58,7 @@ class RequestCard extends React.Component {
                 <Card.Header as="h5">Request ID: {this.props.requestId}</Card.Header>
                 <Card.Body>
                 <Card.Text>
-                    <strong>Time: </strong>{Date(this.props.requestTime)}
+                    <strong>Time: </strong>{this.props.requestTime}
                 </Card.Text>
                 <Card.Text>
                     <strong>Description: </strong>{this.props.requestDescription}

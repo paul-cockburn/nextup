@@ -20,7 +20,9 @@ class RequestHelp extends React.Component {
 
     componentDidMount(){
       if(!this.state.requestTime){
-        this.setState({requestTime: getDateTime()})
+        var d = new Date();
+        var dateTime = (d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()).toString();
+        this.setState({requestTime: dateTime})
       }
     }
     
@@ -46,8 +48,9 @@ class RequestHelp extends React.Component {
           let cityRef = db.collection('requests').doc( docRef.id);
           let setWithOptions = cityRef.set({
               requestId: docRef.id
-          }, {merge: true});
-          // this.props.history.push('/student-home')
+          }, {merge: true}).then(()=>{
+            window.location.reload(false);
+        });
 
       })
       
