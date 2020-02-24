@@ -85,15 +85,15 @@ class HelperHome extends React.Component {
             <h1>Home</h1>
             <h2>Requests Waiting</h2>
 
-            <ReturnCards requests={this.state.requests}/>
+            <ReturnCards requests={this.state.waitingReqs}/>
 
             <h2>Requests In Progress</h2>
 
-            <ReturnCards requests={this.state.requests}/>
+            <ReturnCards requests={this.state.inProgReqs}/>
 
             <h2>Completed Requests</h2>
 
-            <ReturnCards requests={this.state.requests}/>
+            <ReturnCards requests={this.state.completedReqs}/>
 
 
             <Button onClick={this.handleSubmit}>Refresh</Button>
