@@ -20,7 +20,6 @@ class HelperHome extends React.Component {
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.getRequests = this.getRequests.bind(this);
-      this.categoriseRequests = this.categoriseRequests.bind(this);
 
     }
 
@@ -74,23 +73,6 @@ class HelperHome extends React.Component {
     componentDidMount(){
       this.getRequests();
     }
-
-    categoriseRequests(){
-      // var requestsArray = Array.from(Object.keys(this.state.requests), k => this.state.requests[k]);
-      // var waitingReqs  = {}
-      // var inProgReqs  = {}
-      // var completedReqs  = {}
-      // var deletedReqs  = {}
-      // requestsArray.forEach(function (req) {
-      //   var reqId = req.requestId
-      //   var reqVal = req
-      //   // console.log("request", req);
-      //   if(req.requestStatus=="Waiting"){
-          
-      //   }
-      // });
-    }
-    
     handleChange(event) {
     }
 
@@ -98,9 +80,6 @@ class HelperHome extends React.Component {
     }
 
     render () {
-      if (this.state.requests) {
-        this.categoriseRequests();
-      }
       return (
           <div>
             <h1>Home</h1>
