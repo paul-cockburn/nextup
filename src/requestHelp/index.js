@@ -42,8 +42,6 @@ class RequestHelp extends React.Component {
       db.collection("requests").add(this.state)
 
       .then(function(docRef) {
-        alert("hello")
-
           console.log("Document written with ID: ", docRef.id);
           let cityRef = db.collection('requests').doc( docRef.id);
           let setWithOptions = cityRef.set({

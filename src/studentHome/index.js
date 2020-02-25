@@ -19,50 +19,67 @@ class StudentHome extends React.Component {
   
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.getRequests = this.getRequests.bind(this);
     }
 
-    getRequest(){
+    getRequests(){
       var db = firebase.firestore();
-      console.log("Fetching Data");
-      let requestRef = db.collection("requests").doc("Q6GLuoXjLXyNk4hPqZJl");
-      let getDoc = requestRef.get()
-        .then(doc => {
-          if(!doc.exists) {
-            console.log("No such document!");
-          }else{
-            console.log("Document data: ", doc.data());
-            this.setState({
-              requestDescription: doc.data().requestDescription,
-              requestLocation: doc.data().requestLocation,
-              requestPriority: doc.data().requestPriority
+        let requestsRef = db.collection('requests');
+        let getCol = requestsRef.where('requestUser', '==', 'psc4@hw.ac.uk').get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+            console.log('No matching documents.');
+            return;
+            }  
+            var documents  = {}
+            snapshot.forEach(doc => {
+                console.log(doc.id, '=>', doc.data());
+                var docKey = doc.id
+                var docVal = doc.data()
+                documents[docKey] = docVal
             });
-          }
+            var stateObject = {}
+            stateObject["requests"] = documents
+            this.setState(stateObject)
+            console.log("STATE", this.state)
         })
         .catch(err => {
-          console.log("Error getting document", err);
+            console.log('Error getting documents', err);
         });
+
+
+
+
+
+      // var db = firebase.firestore();
+      // console.log("Fetching Data");
+      // let requestRef = db.collection("requests").doc("Q6GLuoXjLXyNk4hPqZJl");
+      // let getDoc = requestRef.get()
+      //   .then(doc => {
+      //     if(!doc.exists) {
+      //       console.log("No such document!");
+      //     }else{
+      //       console.log("Document data: ", doc.data());
+      //       this.setState({
+      //         requestDescription: doc.data().requestDescription,
+      //         requestLocation: doc.data().requestLocation,
+      //         requestPriority: doc.data().requestPriority
+      //       });
+      //     }
+      //   })
+      //   .catch(err => {
+      //     console.log("Error getting document", err);
+      //   });
     }
 
     componentDidMount(){
-      this.getRequest();
+      this.getRequests();
     }
     
     handleChange(event) {
     }
 
     handleSubmit(event) {
-      // var db = firebase.firestore();
-      // db.collection("requests").get().then(function(querySnapshot) {
-      //   querySnapshot.forEach(function(doc) {
-      //       // doc.data() is never undefined for query doc snapshots
-      //       // console.log(doc.id, " => ", doc.data());
-      //       var key = doc.id
-      //       var val = doc.data()
-      //       var obj  = {}
-      //       obj[key] = val
-      //       // console.log(obj)
-      //   });
-      // });
     }
 
     render () {
@@ -76,19 +93,35 @@ class StudentHome extends React.Component {
             </Link>
             <h2>Your Requests</h2>
 
-            <RequestCard 
-              requestId = {this.state.requestId}
-              requestDescription = {this.state.requestDescription}
-              requestTime = {this.state.requestTime}
-              requestClass = {this.state.requestClass}
-              requestLocation = {this.state.requestLocation}
-              requestPriority = {this.state.requestPriority}
-            />
-
+            <ReturnCards requests={this.state.requests}/>
+            
             <Button onClick={this.handleSubmit}>Refresh</Button>
         </div>
       );
     }
+  }
+
+  function ReturnCards({ requests }) {
+    if (!requests) {
+      return <p>No requests</p>;
+    }
+
+    return (
+      <div>
+        {Object.keys(requests).map(requestKey => (
+            <RequestCard key={requestKey}
+                requestId = {requestKey}
+                requestDescription = {requests[requestKey].requestDescription}
+                requestTime = {requests[requestKey].requestTime}
+                requestClass = {requests[requestKey].requestClass}
+                requestLocation = {requests[requestKey].requestLocation}
+                requestPriority = {requests[requestKey].requestPriority}
+                requestStatus = {requests[requestKey].requestStatus}
+                requestUser = {requests[requestKey].requestUser}
+            />
+        ))}
+      </div>
+    );
   }
 
   export default StudentHome;
