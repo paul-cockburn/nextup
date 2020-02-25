@@ -67,7 +67,12 @@ class RequestCard extends React.Component {
                 <Redirect
                     to={{
                         pathname: "/request-help",
-                        state: { requestUser: this.props.requestUser, requestDescription: this.props.requestDescription, requestLocation: this.props.requestLocation, requestPriority: this.props.requestPriority }
+                        state: { 
+                            requestUser: this.props.requestUser, 
+                            requestDescription: this.props.requestDescription, 
+                            requestLocation: this.props.requestLocation, 
+                            requestPriority: this.props.requestPriority
+                        }
                     }}
                 />
             )
