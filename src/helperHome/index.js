@@ -82,8 +82,6 @@ class HelperHome extends React.Component {
             <h2>Your Active Requests</h2>
 
             <ReturnCards requests={this.state.inProgReqs}/>
-
-            <Button onClick={this.handleSubmit}>Refresh</Button>
         </div>
       );
     }

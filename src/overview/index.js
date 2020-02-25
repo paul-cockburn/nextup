@@ -66,7 +66,6 @@ class Overview extends React.Component {
             stateObject["completedReqs"] = completedReqs
             stateObject["deletedReqs"] = deletedReqs
             this.setState(stateObject)
-            console.log("STATE", this.state)
         })
         .catch(err => {
             console.log('Error getting documents', err);
@@ -103,8 +102,6 @@ class Overview extends React.Component {
 
             <ReturnCards requests={this.state.deletedReqs}/>
 
-
-            <Button onClick={this.handleSubmit}>Refresh</Button>
         </div>
       );
     }
@@ -119,14 +116,14 @@ class Overview extends React.Component {
       <div>
         {Object.keys(requests).map(requestKey => (
             <RequestCard key={requestKey}
-                requestId = {requestKey}
-                requestDescription = {requests[requestKey].requestDescription}
-                requestTime = {requests[requestKey].requestTime}
-                requestClass = {requests[requestKey].requestClass}
-                requestLocation = {requests[requestKey].requestLocation}
-                requestPriority = {requests[requestKey].requestPriority}
-                requestStatus = {requests[requestKey].requestStatus}
-                requestUser = {requests[requestKey].requestUser}
+              requestId = {requestKey}
+              requestDescription = {requests[requestKey].requestDescription}
+              requestTime = {requests[requestKey].requestTime}
+              requestClass = {requests[requestKey].requestClass}
+              requestLocation = {requests[requestKey].requestLocation}
+              requestPriority = {requests[requestKey].requestPriority}
+              requestStatus = {requests[requestKey].requestStatus}
+              requestUser = {requests[requestKey].requestUser}
             />
         ))}
       </div>

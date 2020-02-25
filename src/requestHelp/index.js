@@ -12,7 +12,12 @@ function getDateTime() {
 class RequestHelp extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {requestPriority: "Low", requestStatus: "Waiting"};
+        this.state = {
+          requestPriority: "low", 
+          requestUser: "",
+          requestDescription: "",
+          requestLocation: ""
+        };
     
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,6 +28,29 @@ class RequestHelp extends React.Component {
         var d = new Date();
         var dateTime = (d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()).toString();
         this.setState({requestTime: dateTime})
+      }
+
+      if(this.props.location.state){
+        if(this.props.location.state.requestPriority){
+          this.setState({requestPriority: this.props.location.state.requestPriority})
+        }
+  
+        if(this.props.location.state.requestDescription){
+          this.setState({requestDescription: this.props.location.state.requestDescription})
+        }
+  
+        if(this.props.location.state.requestUser){
+          this.setState({requestUser: this.props.location.state.requestUser})
+        }
+  
+        if(this.props.location.state.requestLocation){
+          this.setState({requestLocation: this.props.location.state.requestLocation})
+        }
+      }
+      
+
+      if(!this.state.requestStatus){
+        this.setState({requestStatus: "Waiting"})
       }
     }
     
@@ -65,7 +93,7 @@ class RequestHelp extends React.Component {
             <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="requestUser">
                   <Form.Label>Email Address</Form.Label>
-                  <Form.Control value={this.props.location.state.requestUser} type="email" placeholder="Enter email address" onChange={this.handleChange} />
+                  <Form.Control value={this.state.requestUser} type="email" placeholder="Enter email address" onChange={this.handleChange} />
               </Form.Group>
 
               <Form.Group controlId="requestDescription">
@@ -78,7 +106,7 @@ class RequestHelp extends React.Component {
 
               <Form.Group controlId="requestLocation">
                   <Form.Label>Location</Form.Label>
-                  <Form.Control value={this.props.location.state.requestLocation} type="studentLocation" placeholder="Describe where you are sitting" onChange={this.handleChange} />
+                  <Form.Control value={this.state.requestLocation} type="studentLocation" placeholder="Describe where you are sitting" onChange={this.handleChange} />
                   <Form.Text className="text-muted">
                       E.g. I'm sitting in EM2.45 in the back left corner on computer 15.
                   </Form.Text>
@@ -86,7 +114,7 @@ class RequestHelp extends React.Component {
 
               <Form.Group controlId="requestPriority">
                 <Form.Label>Priority</Form.Label>
-                <Form.Control value={this.props.location.state.requestPriority} type="issuePriority" as="select" onChange={this.handleChange}>
+                <Form.Control value={this.state.requestPriority} type="issuePriority" as="select" onChange={this.handleChange}>
                   <option>Low</option>
                   <option>Medium</option>
                   <option>High</option>
