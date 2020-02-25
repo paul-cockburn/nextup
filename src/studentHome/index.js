@@ -46,30 +46,6 @@ class StudentHome extends React.Component {
         .catch(err => {
             console.log('Error getting documents', err);
         });
-
-
-
-
-
-      // var db = firebase.firestore();
-      // console.log("Fetching Data");
-      // let requestRef = db.collection("requests").doc("Q6GLuoXjLXyNk4hPqZJl");
-      // let getDoc = requestRef.get()
-      //   .then(doc => {
-      //     if(!doc.exists) {
-      //       console.log("No such document!");
-      //     }else{
-      //       console.log("Document data: ", doc.data());
-      //       this.setState({
-      //         requestDescription: doc.data().requestDescription,
-      //         requestLocation: doc.data().requestLocation,
-      //         requestPriority: doc.data().requestPriority
-      //       });
-      //     }
-      //   })
-      //   .catch(err => {
-      //     console.log("Error getting document", err);
-      //   });
     }
 
     componentDidMount(){

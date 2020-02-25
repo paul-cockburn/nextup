@@ -1,18 +1,25 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import * as firebase from 'firebase';
+import { Redirect } from "react-router-dom";
 
 class RequestCard extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            editRedirect: false
+        }
+        
         this.handleEdit = this.handleEdit.bind(this);
         this.handleAccept = this.handleAccept.bind(this);
         this.handleDone = this.handleDone.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
 
     }
+    
 
     handleEdit(){
+        this.setState({editRedirect: true})
     }
 
     handleAccept(){
@@ -20,7 +27,8 @@ class RequestCard extends React.Component {
         let cityRef = db.collection('requests').doc(this.props.requestId);
 
         let setWithOptions = cityRef.set({
-            requestStatus: "In Progress"
+            requestStatus: "In Progress",
+            requestHelper: "helper@hw.ac.uk"
         }, {merge: true}).then(()=>{
             window.location.reload(false);
         });
@@ -53,6 +61,17 @@ class RequestCard extends React.Component {
     }
   
     render () {
+        const editRedirect = this.state.editRedirect;
+        if (editRedirect) {
+            return (
+                <Redirect
+                    to={{
+                        pathname: "/request-help",
+                        state: { requestUser: this.props.requestUser, requestDescription: this.props.requestDescription, requestLocation: this.props.requestLocation, requestPriority: this.props.requestPriority }
+                    }}
+                />
+            )
+        }
         return (
             <Card>
                 <Card.Header as="h5">Request ID: {this.props.requestId}</Card.Header>

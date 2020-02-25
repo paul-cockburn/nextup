@@ -65,12 +65,12 @@ class RequestHelp extends React.Component {
             <Form onSubmit={this.handleSubmit}>
               <Form.Group controlId="requestUser">
                   <Form.Label>Email Address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email address" onChange={this.handleChange} />
+                  <Form.Control value={this.props.location.state.requestUser} type="email" placeholder="Enter email address" onChange={this.handleChange} />
               </Form.Group>
 
               <Form.Group controlId="requestDescription">
                   <Form.Label>Description</Form.Label>
-                  <Form.Control as="textarea" rows="3" placeholder="Describe why you are requesting help" onChange={this.handleChange} />
+                  <Form.Control value={this.state.requestDescription} as="textarea" rows="3" placeholder="Describe why you are requesting help" onChange={this.handleChange} />
                   <Form.Text className="text-muted">
                       Please try to explain what you are needing help with. Something brief is fine if you're not sure what's wrong.
                   </Form.Text>
@@ -78,7 +78,7 @@ class RequestHelp extends React.Component {
 
               <Form.Group controlId="requestLocation">
                   <Form.Label>Location</Form.Label>
-                  <Form.Control type="studentLocation" placeholder="Describe where you are sitting" onChange={this.handleChange} />
+                  <Form.Control value={this.props.location.state.requestLocation} type="studentLocation" placeholder="Describe where you are sitting" onChange={this.handleChange} />
                   <Form.Text className="text-muted">
                       E.g. I'm sitting in EM2.45 in the back left corner on computer 15.
                   </Form.Text>
@@ -86,7 +86,7 @@ class RequestHelp extends React.Component {
 
               <Form.Group controlId="requestPriority">
                 <Form.Label>Priority</Form.Label>
-                <Form.Control type="issuePriority" as="select" onChange={this.handleChange}>
+                <Form.Control value={this.props.location.state.requestPriority} type="issuePriority" as="select" onChange={this.handleChange}>
                   <option>Low</option>
                   <option>Medium</option>
                   <option>High</option>
