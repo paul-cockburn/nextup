@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import RequestCard from "../components/RequestCard"
 
 
-class HelperHome extends React.Component {
+class Overview extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -15,7 +15,8 @@ class HelperHome extends React.Component {
         requestClass: "F20DL",
         requestLocation: "I'm sitting in EM2.45 in the back left corner on computer 15.",
         requestPriority: "Medium",
-        waitingTotal: 0
+        waitingTotal: 0,
+        inProgTotal: 0
       };
   
       this.handleChange = this.handleChange.bind(this);
@@ -36,6 +37,8 @@ class HelperHome extends React.Component {
             var documents  = {}
             var waitingReqs  = {}
             var inProgReqs  = {}
+            var completedReqs  = {}
+            var deletedReqs  = {}
             snapshot.forEach(doc => {
                 console.log(doc.id, '=>', doc.data());
                 var docKey = doc.id
@@ -47,12 +50,21 @@ class HelperHome extends React.Component {
                 }
                 if(doc.data().requestStatus==="In Progress"){
                   inProgReqs[docKey] = docVal
+                  this.setState({inProgTotal: this.state.inProgTotal+1})
+                }
+                if(doc.data().requestStatus==="Completed"){
+                  completedReqs[docKey] = docVal
+                }
+                if(doc.data().requestStatus==="Deleted"){
+                  deletedReqs[docKey] = docVal
                 }
             });
             var stateObject = {}
             stateObject["requests"] = documents
             stateObject["waitingReqs"] = waitingReqs
             stateObject["inProgReqs"] = inProgReqs
+            stateObject["completedReqs"] = completedReqs
+            stateObject["deletedReqs"] = deletedReqs
             this.setState(stateObject)
             console.log("STATE", this.state)
         })
@@ -74,14 +86,23 @@ class HelperHome extends React.Component {
     render () {
       return (
           <div>
-            <h1>Home</h1>
+            <h1>Overview</h1>
             <h2>{this.state.waitingTotal} Requests Waiting</h2>
 
             <ReturnCards requests={this.state.waitingReqs}/>
 
-            <h2>Your Active Requests</h2>
+            <h2>{this.state.inProgTotal} Requests In Progress</h2>
 
             <ReturnCards requests={this.state.inProgReqs}/>
+
+            <h2>Completed Requests</h2>
+
+            <ReturnCards requests={this.state.completedReqs}/>
+
+            <h2>Deleted Requests</h2>
+
+            <ReturnCards requests={this.state.deletedReqs}/>
+
 
             <Button onClick={this.handleSubmit}>Refresh</Button>
         </div>
@@ -112,4 +133,4 @@ class HelperHome extends React.Component {
     );
   }
 
-  export default HelperHome;
+  export default Overview;
