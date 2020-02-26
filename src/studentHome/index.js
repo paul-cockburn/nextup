@@ -87,6 +87,7 @@ class StudentHome extends React.Component {
         {Object.keys(requests).map(requestKey => (
             <RequestCard key={requestKey}
                 requestId = {requestKey}
+                requestUser = {requests[requestKey].requestUser}
                 requestDescription = {requests[requestKey].requestDescription}
                 requestTime = {requests[requestKey].requestTime}
                 requestClass = {requests[requestKey].requestClass}

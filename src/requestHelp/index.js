@@ -26,7 +26,7 @@ class RequestHelp extends React.Component {
     componentDidMount(){
       if(!this.state.requestTime){
         var d = new Date();
-        var dateTime = (d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()).toString();
+        var dateTime = (d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()).toString();
         this.setState({requestTime: dateTime})
       }
 
