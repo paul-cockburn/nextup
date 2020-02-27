@@ -160,23 +160,36 @@ class Overview extends React.Component {
       var bFormatted = moment(b.requestTime, moment.defaultFormat).toDate()
       var aDate = new Date(aFormatted)
       var bDate = new Date(bFormatted)
-      return (
-        (bDate.getTime())-(aDate.getTime())
-      );
+      if(sortBy === "oldestFirst"){
+        return (
+          (aDate.getTime())-(bDate.getTime())
+        );
+      }else if(sortBy === "newestFirst"){
+        return (
+          (bDate.getTime())-(aDate.getTime())
+        );      
+      }
     })
+    console.log(reqsArray[0].requestTime, sortBy)
+    const arrayToObject = (array) =>
+      array.reduce((obj, item) => {
+        obj[item.requestId] = item
+        return obj
+      }, {})
+    const requestsSorted = arrayToObject(reqsArray)
     return (
       <div>
-        {Object.keys(requests).map(requestKey => (
+        {Object.keys(requestsSorted).map(requestKey => (
             <RequestCard key={requestKey}
               requestId = {requestKey}
-              requestUser = {requests[requestKey].requestUser}
-              requestDescription = {requests[requestKey].requestDescription}
-              requestTime = {requests[requestKey].requestTime}
-              requestClass = {requests[requestKey].requestClass}
-              requestLocation = {requests[requestKey].requestLocation}
-              requestPriority = {requests[requestKey].requestPriority}
-              requestStatus = {requests[requestKey].requestStatus}
-              requestUser = {requests[requestKey].requestUser}
+              requestUser = {requestsSorted[requestKey].requestUser}
+              requestDescription = {requestsSorted[requestKey].requestDescription}
+              requestTime = {requestsSorted[requestKey].requestTime}
+              requestClass = {requestsSorted[requestKey].requestClass}
+              requestLocation = {requestsSorted[requestKey].requestLocation}
+              requestPriority = {requestsSorted[requestKey].requestPriority}
+              requestStatus = {requestsSorted[requestKey].requestStatus}
+              requestUser = {requestsSorted[requestKey].requestUser}
             />
         ))}
       </div>
