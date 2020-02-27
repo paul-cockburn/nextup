@@ -154,21 +154,16 @@ class Overview extends React.Component {
       return <p>No requests</p>;
     }
     var reqsArray = Object.values(requests);
-    console.log("NOT SORTED", reqsArray)
-
     reqsArray.sort(function(a, b){
-      var aFormatted= moment(a.requestTime).format('DD-MM-YYYY')
-      var bFormatted= moment(b.requestTime).format('DD-MM-YYYY')
+      moment.defaultFormat = "DD.MM.YYYY HH:mm";
+      var aFormatted = moment(a.requestTime, moment.defaultFormat).toDate()
+      var bFormatted = moment(b.requestTime, moment.defaultFormat).toDate()
       var aDate = new Date(aFormatted)
       var bDate = new Date(bFormatted)
-      // console.log("A ", aFormatted, " B ", bFormatted)
-      console.log("A ", a.requestTime, " B ", b.requestTime)
-
       return (
-        (aDate.getTime())-(bDate.getTime())
+        (bDate.getTime())-(aDate.getTime())
       );
     })
-    console.log("SORTED", reqsArray)
     return (
       <div>
         {Object.keys(requests).map(requestKey => (
