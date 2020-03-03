@@ -102,6 +102,9 @@ class RequestCard extends React.Component {
                 <Card.Text>
                 <strong>Status: </strong>{this.props.requestStatus}
                 </Card.Text>
+                <Card.Text>
+                <strong>Helper: </strong>{this.props.requestHelper}
+                </Card.Text>
                 <Button variant="primary" onClick={this.handleEdit}>Edit</Button>
                 <Button variant="primary" onClick={this.handleAccept}>Accept</Button>
                 <Button variant="primary" onClick={this.handleDone}>Mark as Done</Button>
