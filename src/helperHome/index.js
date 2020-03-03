@@ -144,6 +144,8 @@ class HelperHome extends React.Component {
                 requestStatus = {requests[requestKey].requestStatus}
                 requestUser = {requests[requestKey].requestUser}
                 requestHelper = {requests[requestKey].requestHelper}
+                helperCard = {true}
+                studentCard = {false}
             />
         ))}
       </div>

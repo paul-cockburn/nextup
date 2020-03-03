@@ -79,34 +79,43 @@ class RequestCard extends React.Component {
         }
         return (
             <Card>
-                <Card.Header as="h5">Request ID: {this.props.requestId}</Card.Header>
+                <Card.Header as="h5">
+                    Request ID: {this.props.requestId}
+                    { this.props.studentCard ? 
+                        <Button variant="primary" onClick={this.handleEdit}>Edit</Button>
+                    : null } 
+                </Card.Header>
                 <Card.Body>
-                <Card.Text>
-                    <strong>Student: </strong>{this.props.requestUser}
-                </Card.Text>
                 <Card.Text>
                     <strong>Time: </strong>{this.props.requestTime}
                 </Card.Text>
                 <Card.Text>
                     <strong>Description: </strong>{this.props.requestDescription}
                 </Card.Text>
+                {/* conditional rendering of text */}
+                { this.props.helperCard ? 
+                    <Card.Text>
+                        <strong>Student: </strong>{this.props.requestUser}
+                    </Card.Text>
+                : null } 
                 <Card.Text>
-                <strong>Class: </strong>{this.props.requestClass}
+                    <strong>Location: </strong>{this.props.requestLocation}
                 </Card.Text>
                 <Card.Text>
-                <strong>Location: </strong>{this.props.requestLocation}
+                    <strong>Priority: </strong>{this.props.requestPriority}
                 </Card.Text>
                 <Card.Text>
-                <strong>Priority: </strong>{this.props.requestPriority}
+                    <strong>Status: </strong>{this.props.requestStatus}
                 </Card.Text>
                 <Card.Text>
-                <strong>Status: </strong>{this.props.requestStatus}
+                    <strong>Helper: </strong>{this.props.requestHelper}
                 </Card.Text>
-                <Card.Text>
-                <strong>Helper: </strong>{this.props.requestHelper}
-                </Card.Text>
-                <Button variant="primary" onClick={this.handleEdit}>Edit</Button>
-                <Button variant="primary" onClick={this.handleAccept}>Accept</Button>
+
+                
+
+                { this.props.helperCard ? 
+                    <Button variant="primary" onClick={this.handleAccept}>Accept</Button>
+                : null } 
                 <Button variant="primary" onClick={this.handleDone}>Mark as Done</Button>
                 <Button variant="primary" onClick={this.handleDelete}>Delete</Button>
                 </Card.Body>

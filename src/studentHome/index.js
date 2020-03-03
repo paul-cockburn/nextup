@@ -94,6 +94,8 @@ class StudentHome extends React.Component {
                 requestPriority = {requests[requestKey].requestPriority}
                 requestStatus = {requests[requestKey].requestStatus}
                 requestUser = {requests[requestKey].requestUser}
+                helperCard = {false}
+                studentCard = {true}
             />
         ))}
       </div>
