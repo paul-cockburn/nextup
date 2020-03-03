@@ -120,14 +120,14 @@ class RequestHelp extends React.Component {
                   <option>High</option>
                 </Form.Control>
               </Form.Group>
-              <Button variant="primary" type="submit">
-                  Submit
-              </Button>
               <Link to="/student-home">
-                <Button variant="primary">
+                <Button variant="secondary">
                     Cancel
                 </Button>
               </Link>
+              <Button variant="success" type="submit">
+                  Submit
+              </Button>
           </Form>
         </div>
       );

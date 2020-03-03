@@ -116,8 +116,8 @@ class RequestCard extends React.Component {
                 { this.props.helperCard ? 
                     <Button variant="primary" onClick={this.handleAccept}>Accept</Button>
                 : null } 
-                <Button variant="primary" onClick={this.handleDone}>Mark as Done</Button>
-                <Button variant="primary" onClick={this.handleDelete}>Delete</Button>
+                <Button variant="success" onClick={this.handleDone}>Mark as Done</Button>
+                <Button variant="danger" onClick={this.handleDelete}>Delete</Button>
                 </Card.Body>
             </Card>
         );
