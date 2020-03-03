@@ -1,6 +1,6 @@
 import * as firebase from "firebase";
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import RequestCard from "../components/RequestCard"
 
@@ -71,17 +71,55 @@ class HelperHome extends React.Component {
     handleSubmit(event) {
     }
 
+    oldestFirst(){
+      this.setState({
+        sortBy: "oldestFirst"
+      })
+    }
+
+    newestFirst(){
+      this.setState({
+        sortBy: "newestFirst"
+      })
+    }
+
+    highPriFirst(){
+      this.setState({
+        sortBy: "highPriFirst"
+      })
+    }
+
+    lowPriFirst(){
+      this.setState({
+        sortBy: "lowPriFirst"
+      })
+    }
+
     render () {
       return (
           <div>
             <h1>Home</h1>
-            <h2>{this.state.waitingTotal} Requests Waiting</h2>
-
-            <ReturnCards requests={this.state.waitingReqs}/>
-
             <h2>Your Active Requests</h2>
 
             <ReturnCards requests={this.state.inProgReqs}/>
+
+            <h2>{this.state.waitingTotal} Requests Waiting</h2>
+
+            <Dropdown>
+              <Dropdown.Toggle variant="info" id="dropdown-basic">
+                Sort Requests
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={this.oldestFirst}>Oldest first</Dropdown.Item>
+                <Dropdown.Item onClick={this.newestFirst}>Newest first</Dropdown.Item>
+                <Dropdown.Item onClick={this.highPriFirst}>Highest priority first</Dropdown.Item>
+                <Dropdown.Item onClick={this.lowPriFirst}>Lowest priority first</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <ReturnCards requests={this.state.waitingReqs}/>
+
         </div>
       );
     }
@@ -105,6 +143,7 @@ class HelperHome extends React.Component {
                 requestPriority = {requests[requestKey].requestPriority}
                 requestStatus = {requests[requestKey].requestStatus}
                 requestUser = {requests[requestKey].requestUser}
+                requestHelper = {requests[requestKey].requestHelper}
             />
         ))}
       </div>
