@@ -25,7 +25,7 @@ class StudentHome extends React.Component {
     getRequests(){
       var db = firebase.firestore();
         let requestsRef = db.collection('requests');
-        let getCol = requestsRef.where('requestUser', '==', 'psc4@hw.ac.uk').get()
+        let getCol = requestsRef.where('requestUser', '==', 'student@hw.ac.uk').get()
         .then(snapshot => {
             if (snapshot.empty) {
             console.log('No matching documents.');
@@ -71,7 +71,6 @@ class StudentHome extends React.Component {
 
             <ReturnCards requests={this.state.requests}/>
             
-            <Button onClick={this.handleSubmit}>Refresh</Button>
         </div>
       );
     }
