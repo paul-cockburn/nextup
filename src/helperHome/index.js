@@ -1,6 +1,6 @@
 import * as firebase from "firebase";
 import React from 'react';
-import { Dropdown } from 'react-bootstrap';
+import { Dropdown, Badge } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import RequestCard from "../components/RequestCard"
 
@@ -103,7 +103,7 @@ class HelperHome extends React.Component {
 
             <ReturnCards requests={this.state.inProgReqs}/>
 
-            <h2>{this.state.waitingTotal} Requests Waiting</h2>
+            <h2>Requests Waiting <Badge variant="info">{this.state.waitingTotal}</Badge></h2>
 
             <Dropdown>
               <Dropdown.Toggle variant="info" id="dropdown-basic">
