@@ -99,7 +99,6 @@ class StudentHome extends React.Component {
                 requestLocation = {requests[requestKey].requestLocation}
                 requestPriority = {requests[requestKey].requestPriority}
                 requestStatus = {requests[requestKey].requestStatus}
-                requestUser = {requests[requestKey].requestUser}
                 helperCard = {false}
                 studentCard = {true}
             />

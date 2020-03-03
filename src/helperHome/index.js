@@ -142,7 +142,6 @@ class HelperHome extends React.Component {
                 requestLocation = {requests[requestKey].requestLocation}
                 requestPriority = {requests[requestKey].requestPriority}
                 requestStatus = {requests[requestKey].requestStatus}
-                requestUser = {requests[requestKey].requestUser}
                 requestHelper = {requests[requestKey].requestHelper}
                 helperCard = {true}
                 studentCard = {false}
