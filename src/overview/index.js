@@ -170,7 +170,6 @@ class Overview extends React.Component {
         );      
       }
     })
-    console.log(reqsArray[0].requestTime, sortBy)
     const arrayToObject = (array) =>
       array.reduce((obj, item) => {
         obj[item.requestId] = item
