@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Container, Row, Col } from 'react-bootstrap';
+import EnterEmail from './enterEmail';
+import EnterEmailHelper from './enterEmailHelper';
 import Register from './register';
 import Login from './login';
 import StudentHome from './studentHome';
@@ -22,7 +24,9 @@ function App() {
           <Row>
             <Col></Col>
             <Col xs={5}>
-              <Route path="/" exact component={Register}  />
+              <Route path="/" exact component={EnterEmail}  />
+              <Route path="/helper" exact component={EnterEmailHelper}  />
+              <Route path="/register" exact component={Register}  />
               <Route path="/login" exact component={Login}  />
               <Route path="/student-home" exact component={StudentHome}  />
               <Route path="/request-help" exact component={RequestHelp}  />

@@ -2,8 +2,8 @@ import * as firebase from "firebase";
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import RequestCard from "../components/RequestCard"
-
+import RequestCard from "../components/RequestCard";
+import { Redirect } from "react-router-dom";
 
 class StudentHome extends React.Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class StudentHome extends React.Component {
     getRequests(){
       var db = firebase.firestore();
         let requestsRef = db.collection('requests');
-        let getCol = requestsRef.where('requestUser', '==', 'student@hw.ac.uk').get()
+        let getCol = requestsRef.where('requestUser', '==', this.props.location.params).get()
         .then(snapshot => {
             if (snapshot.empty) {
             console.log('No matching documents.');
@@ -49,7 +49,8 @@ class StudentHome extends React.Component {
     }
 
     componentDidMount(){
-      this.getRequests();
+      this.getRequests();        
+      console.log("props",this.props.location.params)
     }
     
     handleChange(event) {
@@ -59,6 +60,11 @@ class StudentHome extends React.Component {
     }
 
     render () {
+      if(!this.props.location.params){
+        return (
+            <h1>Please return home and enter your email address.</h1>
+        )
+    }
       return (
           <div>
             <h1>Home</h1>

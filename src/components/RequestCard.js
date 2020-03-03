@@ -107,9 +107,13 @@ class RequestCard extends React.Component {
                 <Card.Text>
                     <strong>Status: </strong>{this.props.requestStatus}
                 </Card.Text>
+                {/* NOT WORKING */}
+                { this.props.requestHelper ? 
                 <Card.Text>
                     <strong>Helper: </strong>{this.props.requestHelper}
                 </Card.Text>
+                : null } 
+
 
                 
 
