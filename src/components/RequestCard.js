@@ -113,10 +113,6 @@ class RequestCard extends React.Component {
                     <strong>Helper: </strong>{this.props.requestHelper}
                 </Card.Text>
                 : null } 
-
-
-                
-
                 { this.props.helperCard ? 
                     <Button variant="primary" onClick={this.handleAccept}>Accept</Button>
                 : null } 
