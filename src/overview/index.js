@@ -1,6 +1,6 @@
 import * as firebase from "firebase";
 import React from 'react';
-import { Dropdown, Accordion } from 'react-bootstrap';
+import { Dropdown, Accordion, Badge } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import RequestCard from "../components/RequestCard"
 import * as moment from "moment";
@@ -18,7 +18,9 @@ class Overview extends React.Component {
         requestPriority: "Medium",
         waitingTotal: 0,
         inProgTotal: 0,
-        sortBy: "oldestFirst"
+        completedTotal: 0,
+        deletedTotal: 0,
+        sortBy: "oldestFirst",
       };
   
       this.handleChange = this.handleChange.bind(this);
@@ -60,9 +62,11 @@ class Overview extends React.Component {
                 }
                 if(doc.data().requestStatus==="Completed"){
                   completedReqs[docKey] = docVal
+                  this.setState({completedTotal: this.state.completedTotal+1})
                 }
                 if(doc.data().requestStatus==="Deleted"){
                   deletedReqs[docKey] = docVal
+                  this.setState({deletedTotal: this.state.completedTotal+1})
                 }
             });
             var stateObject = {}
@@ -116,7 +120,7 @@ class Overview extends React.Component {
           <div>
             <h1>Overview</h1>
             
-            <h2>{this.state.waitingTotal} Requests Waiting</h2>
+            <h2>Requests Waiting <Badge variant="info">{this.state.waitingTotal}</Badge></h2>
             <Dropdown>
               <Dropdown.Toggle variant="info" id="dropdown-basic">
                 Sort Requests
@@ -132,15 +136,15 @@ class Overview extends React.Component {
 
             <ReturnCards requests={this.state.waitingReqs} sortBy={this.state.sortBy}/>
 
-            <h2>{this.state.inProgTotal} Requests In Progress</h2>
+            <h2>Requests In Progress <Badge variant="info">{this.state.inProgTotal}</Badge></h2>
 
             <ReturnCards requests={this.state.inProgReqs} sortBy={this.state.sortBy}/>
 
-            <h2>Completed Requests</h2>
+            <h2>Completed Requests <Badge variant="info">{this.state.completedTotal}</Badge></h2>
 
             <ReturnCards requests={this.state.completedReqs} sortBy={this.state.sortBy}/>
 
-            <h2>Deleted Requests</h2>
+            <h2>Deleted Requests <Badge variant="info">{this.state.deletedTotal}</Badge></h2>
 
             <ReturnCards requests={this.state.deletedReqs}sortBy={this.state.sortBy}/>
 
