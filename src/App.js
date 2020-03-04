@@ -24,7 +24,7 @@ function App() {
         <Container>
           <Row>
             <Col></Col>
-            <Col xs={5}>
+            <Col lg={5} md={12}>
               <Route path="/" exact component={EnterEmail}  />
               <Route path="/helper" exact component={EnterEmailHelper}  />
               <Route path="/register" exact component={Register}  />
