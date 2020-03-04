@@ -1,6 +1,6 @@
 import * as firebase from "firebase";
 import React from 'react';
-import { Dropdown } from 'react-bootstrap';
+import { Dropdown, Accordion } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import RequestCard from "../components/RequestCard"
 import * as moment from "moment";
@@ -178,6 +178,7 @@ class Overview extends React.Component {
     const requestsSorted = arrayToObject(reqsArray)
     return (
       <div>
+        <Accordion>
         {Object.keys(requestsSorted).map(requestKey => (
             <RequestCard key={requestKey}
               requestId = {requestKey}
@@ -191,6 +192,7 @@ class Overview extends React.Component {
               requestUser = {requestsSorted[requestKey].requestUser}
             />
         ))}
+        </Accordion>
       </div>
     );
   }

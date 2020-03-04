@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Accordion, Button, Card } from 'react-bootstrap';
 import * as firebase from 'firebase';
 import { Redirect } from "react-router-dom";
 
@@ -80,11 +80,15 @@ class RequestCard extends React.Component {
         return (
             <Card>
                 <Card.Header as="h5">
+                <Accordion.Toggle as={Button} variant="link" eventKey={this.props.requestId}>
+
                     Request ID: {this.props.requestId}
                     { this.props.studentCard ? 
                         <Button variant="primary" onClick={this.handleEdit}>Edit</Button>
                     : null } 
+                </Accordion.Toggle>
                 </Card.Header>
+                <Accordion.Collapse eventKey={this.props.requestId}>
                 <Card.Body>
                 <Card.Text>
                     <strong>Time: </strong>{this.props.requestTime}
@@ -119,6 +123,7 @@ class RequestCard extends React.Component {
                 <Button variant="success" onClick={this.handleDone}>Mark as Done</Button>
                 <Button variant="danger" onClick={this.handleDelete}>Delete</Button>
                 </Card.Body>
+                </Accordion.Collapse>
             </Card>
         );
     }

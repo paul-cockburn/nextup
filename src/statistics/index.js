@@ -78,7 +78,7 @@ class Statistics extends React.Component {
                       Resolved requests rate (requests/hour)
                     </Accordion.Toggle>
                     </Card.Header>
-                    <Accordion.Collapse eventKey="3">
+                  <Accordion.Collapse eventKey="3">
                   <Card.Body>
                     <Card.Text>
                       <strong>Low priority: </strong>{}
