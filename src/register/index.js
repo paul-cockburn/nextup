@@ -2,13 +2,13 @@ import * as firebase from "firebase";
 import "firebase/auth";
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 
 class Register extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {registered: false};
     
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,14 +23,31 @@ class Register extends React.Component {
     }
 
     handleSubmit(event) {
-        const auth = firebase.auth();
-        const promise = auth.createUserWithEmailAndPassword(this.state.email,this.state.pass);
-        promise.catch(e => console.log(e.message));
-    event.preventDefault();
+        event.preventDefault();
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(error.message)
+            // ...
+        }).then(() => {
+            this.setState({registered: true})
+        }
+        );
     }
 
     render () {
-      return (
+    var registered = this.state.registered
+    if (registered) {
+        return (
+            <Redirect
+                to={{
+                    pathname: "/login"
+                }}
+            />
+        )
+    }
+    return (
         <Form onSubmit={this.handleSubmit}>
             <h1>Register</h1>
             <Form.Group controlId="formEmailReg">

@@ -25,7 +25,7 @@ class StudentHome extends React.Component {
     getRequests(){
       var db = firebase.firestore();
         let requestsRef = db.collection('requests');
-        let getCol = requestsRef.where('requestUser', '==', this.props.location.params).get()
+        let getCol = requestsRef.where('requestUser', '==', firebase.auth().currentUser.email).get()
         .then(snapshot => {
             if (snapshot.empty) {
             console.log('No matching documents.');
@@ -49,8 +49,10 @@ class StudentHome extends React.Component {
     }
 
     componentDidMount(){
-      this.getRequests();        
-      console.log("props",this.props.location.params)
+      if(firebase.auth().currentUser){
+
+        this.getRequests();    
+      }    
     }
     
     handleChange(event) {
@@ -60,11 +62,15 @@ class StudentHome extends React.Component {
     }
 
     render () {
-      if(!this.props.location.params){
+      if(!firebase.auth().currentUser){
         return (
-            <h1>Please return home and enter your email address.</h1>
+          <Redirect
+              to={{
+                  pathname: "/"
+              }}
+          />
         )
-    }
+      }
       return (
           <div>
             <h1>Home</h1>

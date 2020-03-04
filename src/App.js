@@ -35,10 +35,9 @@ function App() {
           <Row>
             <Col></Col>
             <Col lg={5} md={12}>
-              <Route path="/" exact component={EnterEmail}  />
+              <Route path="/" exact component={Login}  />
               <Route path="/helper" exact component={EnterEmailHelper}  />
               <Route path="/register" exact component={Register}  />
-              <Route path="/login" exact component={Login}  />
               <Route path="/student-home" exact component={StudentHome}  />
               <Route path="/request-help" exact component={RequestHelp}  />
               <Route path="/helper-home" exact component={HelperHome}  />

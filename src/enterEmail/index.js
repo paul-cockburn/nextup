@@ -12,6 +12,25 @@ class EnterEmail extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    componentDidMount(){
+        firebase.auth().signInWithEmailAndPassword("paul.s.cockburn@gmail.com", "password").catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(error.message)
+        // ...
+        }).then(() => {
+            var user = firebase.auth().currentUser;
+
+            if (user) {
+                console.log("user", user.email)
+            } else {
+                console.log("NO USER")
+            }
+        })
+   
+    }
     
     handleChange(event) {
         var key = event.target.type

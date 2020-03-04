@@ -45,7 +45,7 @@ class HelperHome extends React.Component {
                   waitingReqs[docKey] = docVal
                   this.setState({waitingTotal: this.state.waitingTotal+1})
                 }
-                if(doc.data().requestStatus==="In Progress" && doc.data().requestHelper===this.props.location.params){
+                if(doc.data().requestStatus==="In Progress" && doc.data().requestHelper==="helper@hw.ac.uk"){
                   inProgReqs[docKey] = docVal
                 }
             });
