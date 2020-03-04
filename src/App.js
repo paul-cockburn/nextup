@@ -25,7 +25,7 @@ function App() {
       <Container className="header-container">
       <Row>
         <Col></Col>
-        <Col xs={6} lg={3}>
+        <Col xs={4} lg={2}>
           <Image src={NUlogo} roundedCircle />
         </Col>
         <Col></Col>
