@@ -113,7 +113,7 @@ class Statistics extends React.Component {
     render () {
       return (
           <div>
-            <h1>Overview</h1>
+            <h1>Statistics</h1>
             
             <Accordion>
                 <Card>
