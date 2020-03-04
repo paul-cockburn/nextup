@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Image } from 'react-bootstrap';
 import EnterEmail from './enterEmail';
 import EnterEmailHelper from './enterEmailHelper';
 import Register from './register';
@@ -14,6 +14,7 @@ import Statistics from './statistics';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { BrowserRouter, Route } from "react-router-dom";
+import NUlogo from "./logo_cropped.png";
 
 
 function App() {
@@ -21,6 +22,15 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+      <Container className="header-container">
+      <Row>
+        <Col></Col>
+        <Col xs={6} lg={3}>
+          <Image src={NUlogo} roundedCircle />
+        </Col>
+        <Col></Col>
+      </Row>
+    </Container>
         <Container>
           <Row>
             <Col></Col>

@@ -1,5 +1,16 @@
+
 .App {
   text-align: center;
+}
+
+.header-container {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+img {
+  width: 100%;
 }
 
 .App-logo {
