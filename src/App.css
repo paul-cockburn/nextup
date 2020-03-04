@@ -47,3 +47,21 @@ img {
     transform: rotate(360deg);
   }
 }
+
+h1 {
+  margin-bottom: 2rem;
+}
+h2 {
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+
+.dropdown {
+  margin-top: .5rem;
+  margin-bottom: 1.5rem;
+}
+
+button {
+  margin-left: .5rem;
+  margin-right: .5rem;
+}
