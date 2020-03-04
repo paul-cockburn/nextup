@@ -117,26 +117,86 @@ class Statistics extends React.Component {
             
             <Accordion>
                 <Card>
-                    <Card.Header>
+                  <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                        Click me!
+                      Average wait time
                     </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
-                    <Card.Body>Hello! I'm the body</Card.Body>
-                    </Accordion.Collapse>
+                  <Card.Body>
+                    <Card.Text>
+                      <strong>Low priority: </strong>{}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Medium priority: </strong>{}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>High priority: </strong>{}
+                    </Card.Text>
+                  </Card.Body>
+                  </Accordion.Collapse>
                 </Card>
                 <Card>
-                    <Card.Header>
+                  <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                        Click me!
+                    Average resolved requests per session
+                    </Accordion.Toggle>
+                  </Card.Header>
+                    <Accordion.Collapse eventKey="1">
+                  <Card.Body>
+                    <Card.Text>
+                      <strong>Low priority: </strong>{}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Medium priority: </strong>{}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>High priority: </strong>{}
+                    </Card.Text>
+                  </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Card.Header>
+                    <Accordion.Toggle as={Button} variant="link" eventKey="2">
+                      Average remaining requests per session
                     </Accordion.Toggle>
                     </Card.Header>
-                    <Accordion.Collapse eventKey="1">
-                    <Card.Body>Hello! I'm another body</Card.Body>
-                    </Accordion.Collapse>
+                    <Accordion.Collapse eventKey="2">
+                  <Card.Body>
+                    <Card.Text>
+                      <strong>Low priority: </strong>{}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Medium priority: </strong>{}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>High priority: </strong>{}
+                    </Card.Text>
+                  </Card.Body>
+                  </Accordion.Collapse>
                 </Card>
-            </Accordion>
+                <Card>
+                  <Card.Header>
+                    <Accordion.Toggle as={Button} variant="link" eventKey="3">
+                      Resolved requests rate (requests/hour)
+                    </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey="3">
+                  <Card.Body>
+                    <Card.Text>
+                      <strong>Low priority: </strong>{}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>Medium priority: </strong>{}
+                    </Card.Text>
+                    <Card.Text>
+                      <strong>High priority: </strong>{}
+                    </Card.Text>
+                  </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
 
         </div>
       );
