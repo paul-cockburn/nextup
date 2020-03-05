@@ -35,10 +35,10 @@ class Login extends React.Component {
 
             if (user) {
                 console.log("user", user.email)
+                this.setState({loggedIn: true})
             } else {
                 console.log("NO USER")
             }
-            this.setState({loggedIn: true})
         })
     }
 
