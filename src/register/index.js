@@ -58,7 +58,7 @@ class Register extends React.Component {
             <h1>Register</h1>
             <Form.Group controlId="formEmailReg">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" onChange={this.handleChange} />
+                <Form.Control required type="email" placeholder="Enter email" onChange={this.handleChange} />
                 <Form.Text className="text-muted">
                     Please use your university email address.
                 </Form.Text>
@@ -66,11 +66,23 @@ class Register extends React.Component {
 
             <Form.Group controlId="formPasswordReg">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" onChange={this.handleChange} />
+                <Form.Control required type="password" placeholder="Password" onChange={this.handleChange} />
             </Form.Group>
-            <Form.Group controlId="formCheckboxReg">
-                <Form.Check type="checkbox" label="Agree to something" />
+            <Form.Group controlId="formRole">
+                <Form.Label>Select role(s)</Form.Label>
+                <Form.Check 
+                    type="switch"
+                    id="custom-switch"
+                    label="Check this switch"
+                />
+                <Form.Check 
+                    disabled
+                    type="switch"
+                    label="disabled switch"
+                    id="disabled-custom-switch"
+                />
             </Form.Group>
+
             <Form.Group>
             <p><Link to="/login">Already have an account? login here.</Link></p>
             </Form.Group>
