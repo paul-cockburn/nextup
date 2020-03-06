@@ -35,6 +35,12 @@ img {
   color: white;
 }
 
+.img-logo-nav {
+  display: block;
+  max-height:65px;
+  width: auto;
+}
+
 .App-link {
   color: #61dafb;
 }

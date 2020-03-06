@@ -14,7 +14,7 @@ import Statistics from './statistics';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { BrowserRouter, Route } from "react-router-dom";
-import NUlogo from "./logo_cropped.png";
+import AccountMenu from "./components/AccountMenu"
 
 
 function App() {
@@ -22,22 +22,14 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-      <Container className="header-container">
-      <Row>
-        <Col></Col>
-        <Col xs={4} lg={2}>
-          <Image src={NUlogo} roundedCircle />
-        </Col>
-        <Col></Col>
-      </Row>
-    </Container>
+      <AccountMenu/>
         <Container>
           <Row>
             <Col></Col>
             <Col lg={5} md={12}>
-              <Route path="/" exact component={Login}  />
+              <Route path="/" exact component={Register}  />
               <Route path="/helper" exact component={EnterEmailHelper}  />
-              <Route path="/register" exact component={Register}  />
+              <Route path="/login" exact component={Login}  />
               <Route path="/student-home" exact component={StudentHome}  />
               <Route path="/request-help" exact component={RequestHelp}  />
               <Route path="/helper-home" exact component={HelperHome}  />
