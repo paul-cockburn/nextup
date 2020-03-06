@@ -24,14 +24,20 @@ class Register extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        console.log(this.state.email, "email")
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            console.log(error.message)
+            alert(errorCode, ": ", errorMessage)
             // ...
         }).then(() => {
-            this.setState({registered: true})
+            var user = firebase.auth().currentUser;
+
+            if (user) {
+                console.log("user", user.email)
+                this.setState({registered: true})
+            }
         }
         );
     }

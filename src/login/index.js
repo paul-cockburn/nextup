@@ -24,17 +24,17 @@ class Login extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        firebase.auth().signInWithEmailAndPassword("paul.s.cockburn@gmail.com", "password").catch(function(error) {
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            console.log(error.message)
+            alert(errorCode, ": ", errorMessage)
             // ...
         }).then(() => {
             var user = firebase.auth().currentUser;
 
             if (user) {
-                console.log("user", user.email)
+                console.log("user", user)
                 this.setState({loggedIn: true})
             } else {
                 console.log("NO USER")
