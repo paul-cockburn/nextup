@@ -72,7 +72,7 @@ class StudentHome extends React.Component {
         )
       }
       return (
-          <div>
+          <div className="page-content">
             <h1>Home</h1>
             <Link to="/request-help">
                 <Button variant="primary" type="submit">

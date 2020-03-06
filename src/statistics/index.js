@@ -8,7 +8,7 @@ class Statistics extends React.Component {
     }
     render () {
       return (
-          <div>
+          <div className="page-content">
             <h1>Statistics</h1>
             
             <Accordion>

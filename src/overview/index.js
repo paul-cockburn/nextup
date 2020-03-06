@@ -117,7 +117,7 @@ class Overview extends React.Component {
     }
     render () {
       return (
-          <div>
+          <div className="page-content">
             <h1>Overview</h1>
             
             <h2>Requests Waiting <Badge variant="info">{this.state.waitingTotal}</Badge></h2>

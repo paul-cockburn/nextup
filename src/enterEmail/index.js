@@ -49,7 +49,7 @@ class EnterEmail extends React.Component {
 
     render () {
       return (
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} className="page-content">
             <h1>Enter your HW email address to begin</h1>
             <Form.Group controlId="formEmailReg">
                 <Form.Control type="email" placeholder="Enter email" onChange={this.handleChange} />

@@ -87,7 +87,7 @@ class RequestHelp extends React.Component {
 
     render () {
       return (
-          <div>
+          <div className="page-content">
             <h1>Request Help</h1>
             
             <Form onSubmit={this.handleSubmit}>

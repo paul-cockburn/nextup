@@ -97,7 +97,7 @@ class HelperHome extends React.Component {
 
     render () {
       return (
-          <div>
+          <div className="page-content">
             <h1>Home</h1>
             <h2>Your Active Requests</h2>
 

@@ -54,7 +54,7 @@ class Register extends React.Component {
         )
     }
     return (
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} className="page-content">
             <h1>Register</h1>
             <Form.Group controlId="formEmailReg">
                 <Form.Label>Email address</Form.Label>
