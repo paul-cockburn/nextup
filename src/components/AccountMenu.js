@@ -12,6 +12,8 @@ class AccountMenu extends React.Component {
     }
   
     render () {
+        console.log("RENDER in accountmenu")
+
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Navbar.Brand href="#home"><Image src={NUlogo} className="img-logo-nav" roundedCircle /></Navbar.Brand>
@@ -21,7 +23,7 @@ class AccountMenu extends React.Component {
                 
                 </Nav>
                 <Nav>
-                    <Nav.Link href="#deets"><UserText/></Nav.Link>
+                    <Nav.Link><UserText/></Nav.Link>
                 </Nav>
             </Navbar.Collapse>
             </Navbar>

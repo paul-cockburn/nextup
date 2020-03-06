@@ -9,6 +9,12 @@
   padding-top: 15px;
 }
 
+.navbar {
+  position: fixed;
+  width: 100%;
+  left: 0;
+}
+
 img {
   width: 100%;
 }

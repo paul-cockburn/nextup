@@ -22,11 +22,12 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-      <AccountMenu/>
+        {/* <AccountMenu/> */}
         <Container>
           <Row>
             <Col></Col>
             <Col lg={5} md={12}>
+              <Route path="/" component={AccountMenu}  />
               <Route path="/" exact component={Register}  />
               <Route path="/helper" exact component={EnterEmailHelper}  />
               <Route path="/login" exact component={Login}  />
