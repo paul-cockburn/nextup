@@ -1,7 +1,7 @@
 import * as firebase from "firebase";
 import "firebase/auth";
 import React from 'react';
-import { Button, Form, Checkbox } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { Link, Redirect } from "react-router-dom";
 
 
@@ -45,8 +45,7 @@ class Register extends React.Component {
     }
 
     togglePasswords(event) {
-        console.log(event.target.id, event.target.value)
-        if(event.target.id = "helperSwitch") {
+        if(event.target.id === "helperSwitch") {
 
         }
 	}
@@ -63,6 +62,7 @@ class Register extends React.Component {
         )
     }
     return (
+        <div>
         <Form onSubmit={this.handleSubmit} className="page-content">
             <h1>Register</h1>
             <Form.Group controlId="formEmailReg">
@@ -79,13 +79,13 @@ class Register extends React.Component {
             </Form.Group>
             <Form.Group controlId="formRole">
                 <Form.Label>Select role(s)</Form.Label>
-                <Checkbox 
+                <Form.Check 
                     type="switch"
                     label="Student"
                     id="studentSwitch"
                     onChange={this.togglePasswords}
                 />
-                <Checkbox 
+                <Form.Check 
                     type="switch"
                     label="Helper"
                     id="helperSwitch"
@@ -95,7 +95,7 @@ class Register extends React.Component {
                     <Form.Label>Enter helper password</Form.Label>
                     <Form.Control required size="sm" type="helperPassword" placeholder="Helper password" onChange={this.handleChange} />
                 </Form.Group>
-                <Checkbox 
+                <Form.Check 
                     type="switch"
                     label="Course Leader"
                     id="courseLeaderSwitch"
@@ -114,6 +114,7 @@ class Register extends React.Component {
                 Submit
             </Button>
         </Form>
+        </div>
       );
     }
   }
