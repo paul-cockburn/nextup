@@ -13,11 +13,10 @@ class UserText extends React.Component {
 
     handleLogout(event) {
         firebase.auth().signOut().then(function() {
-            alert("Logout successful")
         }, function(error) {
             console.log(error.code, ": ", error.message)
         }).then(()=>{
-            this.setState({state: this.state})
+            window.location.reload(false); 
         });
 
     }
