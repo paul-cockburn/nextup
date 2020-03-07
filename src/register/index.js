@@ -8,7 +8,7 @@ import { Link, Redirect } from "react-router-dom";
 class Register extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {registered: false, showLeaderPass: false, showHelperPass: false};
+        this.state = {registered: false, showLeaderPass: false, showHelperPass: false, showStudentPass: false};
     
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,6 +27,7 @@ class Register extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        var db = firebase.firestore();
         console.log(this.state.showHelperPass, " loL ", this.state.helperPassword)
 
         if(this.state.showHelperPass && this.state.helperPassword !== "helper1821") {
@@ -35,6 +36,7 @@ class Register extends React.Component {
         }else if(this.state.showLeaderPass && this.state.courseLeaderPassword !=="leader1821"){
             alert("Wrong course leader password")
         }else{
+            
             console.log(this.state.email, "email")
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
                 // Handle Errors here.
@@ -44,13 +46,30 @@ class Register extends React.Component {
                 // ...
             }).then(() => {
                 var user = firebase.auth().currentUser;
-    
+
                 if (user) {
-                    console.log("user", user.email)
+                    console.log("1 ", user.uid)
+                    console.log("3 ", user.getIdToken())
+
                     this.setState({registered: true})
+                    if(this.state.showStudentPass){
+
+                        db.collection("students").doc(user.uid).set({
+                            uid: user.uid
+                        })
+                    }
+                    if(this.state.showHelperPass){
+                        db.collection("helpers").doc(user.uid).set({
+                            uid: user.uid
+                        })
+                    }
+                    if(this.state.showLeaderPass){
+                        db.collection("courseLeaders").doc(user.uid).set({
+                            uid: user.uid
+                        })
+                    }                    
                 }
-            }
-            );
+            });
         }  
     }
 
@@ -60,6 +79,9 @@ class Register extends React.Component {
         }
         else if(event.target.id === "courseLeaderSwitch"){
             this.setState({showLeaderPass: !this.state.showLeaderPass})
+        }
+        else if(event.target.id === "studentSwitch"){
+            this.setState({showStudentPass: !this.state.showStudentPass})
         }
 	}
 
