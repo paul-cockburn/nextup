@@ -1,17 +1,19 @@
 import * as firebase from "firebase";
 import "firebase/auth";
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Checkbox } from 'react-bootstrap';
 import { Link, Redirect } from "react-router-dom";
 
 
 class Register extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {registered: false};
+        this.state = {registered: false, showLeaderPass: false, showHelperPass: false};
     
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.togglePasswords = this.togglePasswords.bind(this);
+
     }
     
     handleChange(event) {
@@ -42,6 +44,13 @@ class Register extends React.Component {
         );
     }
 
+    togglePasswords(event) {
+        console.log(event.target.id, event.target.value)
+        if(event.target.id = "helperSwitch") {
+
+        }
+	}
+
     render () {
     var registered = this.state.registered
     if (registered) {
@@ -70,17 +79,32 @@ class Register extends React.Component {
             </Form.Group>
             <Form.Group controlId="formRole">
                 <Form.Label>Select role(s)</Form.Label>
-                <Form.Check 
+                <Checkbox 
                     type="switch"
-                    id="custom-switch"
-                    label="Check this switch"
+                    label="Student"
+                    id="studentSwitch"
+                    onChange={this.togglePasswords}
                 />
-                <Form.Check 
-                    disabled
+                <Checkbox 
                     type="switch"
-                    label="disabled switch"
-                    id="disabled-custom-switch"
+                    label="Helper"
+                    id="helperSwitch"
+                    onChange={this.togglePasswords}
                 />
+                <Form.Group controlId="formHelperPassword">
+                    <Form.Label>Enter helper password</Form.Label>
+                    <Form.Control required size="sm" type="helperPassword" placeholder="Helper password" onChange={this.handleChange} />
+                </Form.Group>
+                <Checkbox 
+                    type="switch"
+                    label="Course Leader"
+                    id="courseLeaderSwitch"
+                    onChange={this.togglePasswords}
+                />
+                <Form.Group controlId="formCourseLeaderPassword">
+                    <Form.Label>Enter course leader password</Form.Label>
+                    <Form.Control required size="sm" type="courseLeaderPassword" placeholder="course leader password" onChange={this.handleChange} />
+                </Form.Group>
             </Form.Group>
 
             <Form.Group>
