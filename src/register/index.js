@@ -17,36 +17,49 @@ class Register extends React.Component {
     }
     
     handleChange(event) {
-        var key = event.target.type
+        var key = event.target.id
         var val = event.target.value
         var obj  = {}
         obj[key] = val
         this.setState(obj)
+
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state.email, "email")
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            alert(errorCode, ": ", errorMessage)
-            // ...
-        }).then(() => {
-            var user = firebase.auth().currentUser;
+        console.log(this.state.showHelperPass, " loL ", this.state.helperPassword)
 
-            if (user) {
-                console.log("user", user.email)
-                this.setState({registered: true})
+        if(this.state.showHelperPass && this.state.helperPassword !== "helper1821") {
+            console.log(this.state.showHelperPass, " loL ", this.state.helperPassword)
+            alert("Wrong helper password!")
+        }else if(this.state.showLeaderPass && this.state.courseLeaderPassword !=="leader1821"){
+            alert("Wrong course leader password")
+        }else{
+            console.log(this.state.email, "email")
+            firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                alert(errorCode, ": ", errorMessage)
+                // ...
+            }).then(() => {
+                var user = firebase.auth().currentUser;
+    
+                if (user) {
+                    console.log("user", user.email)
+                    this.setState({registered: true})
+                }
             }
-        }
-        );
+            );
+        }  
     }
 
     togglePasswords(event) {
         if(event.target.id === "helperSwitch") {
-
+            this.setState({showHelperPass: !this.state.showHelperPass})
+        }
+        else if(event.target.id === "courseLeaderSwitch"){
+            this.setState({showLeaderPass: !this.state.showLeaderPass})
         }
 	}
 
@@ -65,7 +78,7 @@ class Register extends React.Component {
         <div>
         <Form onSubmit={this.handleSubmit} className="page-content">
             <h1>Register</h1>
-            <Form.Group controlId="formEmailReg">
+            <Form.Group controlId="email">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control required type="email" placeholder="Enter email" onChange={this.handleChange} />
                 <Form.Text className="text-muted">
@@ -73,11 +86,11 @@ class Register extends React.Component {
                 </Form.Text>
             </Form.Group>
 
-            <Form.Group controlId="formPasswordReg">
+            <Form.Group controlId="password">
                 <Form.Label>Password</Form.Label>
                 <Form.Control required type="password" placeholder="Password" onChange={this.handleChange} />
             </Form.Group>
-            <Form.Group controlId="formRole">
+            <Form.Group controlId="role">
                 <Form.Label>Select role(s)</Form.Label>
                 <Form.Check 
                     type="switch"
@@ -91,20 +104,25 @@ class Register extends React.Component {
                     id="helperSwitch"
                     onChange={this.togglePasswords}
                 />
-                <Form.Group controlId="formHelperPassword">
-                    <Form.Label>Enter helper password</Form.Label>
-                    <Form.Control required size="sm" type="helperPassword" placeholder="Helper password" onChange={this.handleChange} />
-                </Form.Group>
+                { this.state.showHelperPass ? 
+                    <Form.Group controlId="helperPassword">
+                        <Form.Label>Enter helper password</Form.Label>
+                        <Form.Control required size="sm" type="helperPassword" placeholder="Helper password" onChange={this.handleChange}  />
+                    </Form.Group>
+                : null } 
+
                 <Form.Check 
                     type="switch"
                     label="Course Leader"
                     id="courseLeaderSwitch"
                     onChange={this.togglePasswords}
                 />
-                <Form.Group controlId="formCourseLeaderPassword">
-                    <Form.Label>Enter course leader password</Form.Label>
-                    <Form.Control required size="sm" type="courseLeaderPassword" placeholder="course leader password" onChange={this.handleChange} />
-                </Form.Group>
+                { this.state.showLeaderPass ? 
+                    <Form.Group controlId="courseLeaderPassword">
+                        <Form.Label>Enter course leader password</Form.Label>
+                        <Form.Control required size="sm" type="courseLeaderPassword" placeholder="Course leader password" onChange={this.handleChange} />
+                    </Form.Group>
+                : null } 
             </Form.Group>
 
             <Form.Group>
