@@ -1,6 +1,6 @@
 import React from 'react';
 import * as firebase from "firebase";
-import { Nav, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { Redirect, Link } from "react-router-dom";
 
 class UserText extends React.Component {
@@ -42,10 +42,8 @@ class UserText extends React.Component {
             return (
                 <div>
                     <Button variant="outline-primary" size="sm" onClick={this.handleLogout}>Logout</Button>
-                    {/* <Button variant="outline-danger" size="sm" onClick={this.handleLogout}>Delete Account</Button> */}
                 </div>
 
-                // <Nav.Link>You are signed in as {user} <Button variant="outline-primary" size="sm" onClick={this.handleLogout}>Logout</Button></Nav.Link>
             );
         }else{
             console.log("NO USER in usertext")

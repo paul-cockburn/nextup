@@ -1,9 +1,9 @@
 import React from 'react';
 import * as firebase from "firebase";
-
-import { Nav, Navbar, NavDropdown, Image } from 'react-bootstrap';
+import { Nav, Navbar, Image } from 'react-bootstrap';
 import UserText from "./UserText";
 import NUlogo from "../logo_cropped.png";
+import { Link } from "react-router-dom";
 
 
 class AccountMenu extends React.Component {
@@ -13,15 +13,8 @@ class AccountMenu extends React.Component {
 
     }
 
-    componentDidMount(){
-        
-        
-    }
-
     componentDidUpdate() {
         var user = firebase.auth().currentUser;
-        console.log("hello", user)
-
         var db = firebase.firestore();
         if(user && this.state.isHelper === false){
             let helperRef = db.collection('helpers').doc(user.uid);
@@ -30,7 +23,6 @@ class AccountMenu extends React.Component {
                 if (!doc.exists) {
                 console.log('No such document!');
                 } else {
-                console.log('Document data:', doc.data());
                 this.setState({isHelper: true})
                 }
             })
@@ -39,13 +31,12 @@ class AccountMenu extends React.Component {
             });
         }
         if(user && this.state.isCourseLeader === false){
-            let helperRef = db.collection('leaders').doc(user.uid);
+            let helperRef = db.collection('courseLeaders').doc(user.uid);
             let getDoc = helperRef.get()
             .then(doc => {
                 if (!doc.exists) {
                 console.log('No such document!');
                 } else {
-                console.log('Document data:', doc.data());
                 this.setState({isCourseLeader: true})
                 }
             })
@@ -56,23 +47,23 @@ class AccountMenu extends React.Component {
     }
   
     render () {
-        console.log("RENDER in accountmenu")
 
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Navbar.Brand href="#home"><Image src={NUlogo} className="img-logo-nav" roundedCircle /></Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
+
+                { this.state.isCourseLeader ? 
                 <Nav className="mr-auto">
                     <Nav.Link>
-                        Test1
+                        <Link to="/overview" className="nav-link">Overview</Link>
                     </Nav.Link>
-                { this.state.isHelper ? 
                     <Nav.Link>
-                        Test2
+                        <Link to="/statistics" className="nav-link">Statistics</Link>
                     </Nav.Link>
-                : null } 
                 </Nav>
+                : <Nav className="mr-auto"></Nav> } 
                 <Nav>
                     <Nav.Link><UserText/></Nav.Link>
                 </Nav>
