@@ -142,7 +142,7 @@ class Register extends React.Component {
             </Form.Group>
 
             <Form.Group>
-            <p><Link to="/login">Already have an account? login here.</Link></p>
+            <p><Link to="/login">Already have an account? Login here.</Link></p>
             </Form.Group>
             <Button variant="primary" type="submit">
                 Submit
