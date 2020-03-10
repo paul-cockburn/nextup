@@ -9,13 +9,27 @@ import { Link } from "react-router-dom";
 class AccountMenu extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isHelper: false, isCourseLeader: false}
+        this.state = {isStudent: false, isHelper: false, isCourseLeader: false}
 
     }
 
     componentDidUpdate() {
         var user = firebase.auth().currentUser;
         var db = firebase.firestore();
+        if(user && this.state.isStudent === false){
+            let studentRef = db.collection('students').doc(user.uid);
+            let getDoc = studentRef.get()
+            .then(doc => {
+                if (!doc.exists) {
+                console.log('No such document!');
+                } else {
+                    this.setState({isStudent: true})
+                }
+            })
+            .catch(err => {
+                console.log('Error getting document', err);
+            });
+        }
         if(user && this.state.isHelper === false){
             let helperRef = db.collection('helpers').doc(user.uid);
             let getDoc = helperRef.get()
@@ -54,17 +68,32 @@ class AccountMenu extends React.Component {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
 
-                { this.state.isCourseLeader ? 
-                <Nav className="mr-auto">
+
+                { this.state.isCourseLeader || this.state.isHelper ? 
+                <Nav >
                     <Nav.Link>
-                        <Link to="/overview" className="nav-link">Overview</Link>
-                    </Nav.Link>
-                    <Nav.Link>
-                        <Link to="/statistics" className="nav-link">Statistics</Link>
+                        <Link to="/helper-home" className="nav-link">Home</Link>
                     </Nav.Link>
                 </Nav>
-                : <Nav className="mr-auto"></Nav> } 
-                <Nav>
+                : 
+                <Nav >
+                    <Nav.Link>
+                        <Link to="/student-home" className="nav-link">Home</Link>
+                    </Nav.Link>
+                </Nav> 
+                }
+                {this.state.isCourseLeader ? 
+                    <Nav className="mr-auto">
+                        <Nav.Link>
+                            <Link to="/overview" className="nav-link">Overview</Link>
+                        </Nav.Link>
+                        <Nav.Link>
+                            <Link to="/statistics" className="nav-link">Statistics</Link>
+                        </Nav.Link>
+                    </Nav>
+                : null } 
+                
+                <Nav lassName="mr-auto">
                     <Nav.Link><UserText/></Nav.Link>
                 </Nav>
             </Navbar.Collapse>
