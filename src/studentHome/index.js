@@ -61,15 +61,15 @@ class StudentHome extends React.Component {
     }
 
     render () {
-      if(!firebase.auth().currentUser){
-        return (
-          <Redirect
-              to={{
-                  pathname: "/"
-              }}
-          />
-        )
-      }
+      // if(!firebase.auth().currentUser){
+      //   return (
+      //     <Redirect
+      //         to={{
+      //             pathname: "/"
+      //         }}
+      //     />
+      //   )
+      // }
       return (
           <div className="page-content">
             <h1>Home</h1>
