@@ -37,7 +37,7 @@ class UserText extends React.Component {
         if(user !== null){
             return (
                 <div>
-                    <Button variant="outline-primary" size="sm" onClick={this.handleLogout}>Logout</Button>
+                    {user.email}<Button variant="outline-primary" size="sm" onClick={this.handleLogout}>Logout</Button>
                 </div>
 
             );
