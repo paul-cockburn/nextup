@@ -28,16 +28,12 @@ class Register extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         var db = firebase.firestore();
-        console.log(this.state.showHelperPass, " loL ", this.state.helperPassword)
 
         if(this.state.showHelperPass && this.state.helperPassword !== "helper1821") {
-            console.log(this.state.showHelperPass, " loL ", this.state.helperPassword)
             alert("Wrong helper password!")
         }else if(this.state.showLeaderPass && this.state.courseLeaderPassword !=="leader1821"){
             alert("Wrong course leader password")
         }else{
-            
-            console.log(this.state.email, "email")
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
                 // Handle Errors here.
                 var errorCode = error.code;
@@ -48,8 +44,6 @@ class Register extends React.Component {
                 var user = firebase.auth().currentUser;
 
                 if (user) {
-                    console.log("1 ", user.uid)
-                    console.log("3 ", user.getIdToken())
 
                     this.setState({registered: true})
                     if(this.state.showStudentPass){

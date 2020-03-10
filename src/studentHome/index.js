@@ -1,6 +1,6 @@
 import * as firebase from "firebase";
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Accordion } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import RequestCard from "../components/RequestCard";
 import { Redirect } from "react-router-dom";
@@ -41,7 +41,6 @@ class StudentHome extends React.Component {
             var stateObject = {}
             stateObject["requests"] = documents
             this.setState(stateObject)
-            console.log("STATE", this.state)
         })
         .catch(err => {
             console.log('Error getting documents', err);
@@ -95,6 +94,7 @@ class StudentHome extends React.Component {
 
     return (
       <div>
+        <Accordion>
         {Object.keys(requests).map(requestKey => (
             <RequestCard key={requestKey}
                 requestId = {requestKey}
@@ -109,6 +109,7 @@ class StudentHome extends React.Component {
                 studentCard = {true}
             />
         ))}
+        </Accordion>
       </div>
     );
   }

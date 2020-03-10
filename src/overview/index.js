@@ -48,7 +48,6 @@ class Overview extends React.Component {
             var completedReqs  = {}
             var deletedReqs  = {}
             snapshot.forEach(doc => {
-                console.log(doc.id, '=>', doc.data());
                 var docKey = doc.id
                 var docVal = doc.data()
                 documents[docKey] = docVal

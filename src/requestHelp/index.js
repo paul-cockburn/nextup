@@ -60,7 +60,6 @@ class RequestHelp extends React.Component {
       var obj  = {}
       obj[key] = val
       this.setState(obj)
-      console.log(this.state)
     }
 
     handleSubmit(event) {
@@ -70,7 +69,6 @@ class RequestHelp extends React.Component {
       db.collection("requests").add(this.state)
 
       .then(function(docRef) {
-          console.log("Document written with ID: ", docRef.id);
           let cityRef = db.collection('requests').doc( docRef.id);
           let setWithOptions = cityRef.set({
               requestId: docRef.id

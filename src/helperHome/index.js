@@ -1,6 +1,6 @@
 import * as firebase from "firebase";
 import React from 'react';
-import { Dropdown, Badge } from 'react-bootstrap';
+import { Dropdown, Badge, Accordion } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import RequestCard from "../components/RequestCard"
 
@@ -37,7 +37,6 @@ class HelperHome extends React.Component {
             var waitingReqs  = {}
             var inProgReqs  = {}
             snapshot.forEach(doc => {
-                console.log(doc.id, '=>', doc.data());
                 var docKey = doc.id
                 var docVal = doc.data()
                 documents[docKey] = docVal
@@ -54,7 +53,6 @@ class HelperHome extends React.Component {
             stateObject["waitingReqs"] = waitingReqs
             stateObject["inProgReqs"] = inProgReqs
             this.setState(stateObject)
-            console.log("STATE", this.state)
         })
         .catch(err => {
             console.log('Error getting documents', err);
@@ -132,6 +130,7 @@ class HelperHome extends React.Component {
 
     return (
       <div>
+        <Accordion>
         {Object.keys(requests).map(requestKey => (
             <RequestCard key={requestKey}
                 requestId = {requestKey}
@@ -147,6 +146,7 @@ class HelperHome extends React.Component {
                 studentCard = {false}
             />
         ))}
+        </Accordion>
       </div>
     );
   }

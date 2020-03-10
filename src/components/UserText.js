@@ -24,9 +24,7 @@ class UserText extends React.Component {
     render () {
 
         var user = firebase.auth().currentUser
-        console.log("RENDER in usertext", user)
         if(this.state.redirectToLogin){
-            console.log("REDIRECT in usertext")
             // this.setState({redirectToLogin: false})
             return(
                 <Redirect
@@ -37,7 +35,6 @@ class UserText extends React.Component {
             );
         }
         if(user !== null){
-            console.log("USER in usertext")
             return (
                 <div>
                     <Button variant="outline-primary" size="sm" onClick={this.handleLogout}>Logout</Button>
@@ -45,7 +42,6 @@ class UserText extends React.Component {
 
             );
         }else{
-            console.log("NO USER in usertext")
             return (
                 <Link to="/login" className="nav-link"><Button variant="primary" size="sm">Login</Button></Link>
             );

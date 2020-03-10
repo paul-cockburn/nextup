@@ -19,7 +19,6 @@ class Login extends React.Component {
         var obj  = {}
         obj[key] = val
         this.setState(obj)
-        console.log(this.state)
     }
 
     handleSubmit(event) {
@@ -34,7 +33,6 @@ class Login extends React.Component {
             var user = firebase.auth().currentUser;
 
             if (user) {
-                console.log("user", user)
                 this.setState({loggedIn: true})
             } else {
                 console.log("NO USER")
