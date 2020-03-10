@@ -93,7 +93,7 @@ class AccountMenu extends React.Component {
                     </Nav>
                 : null } 
                 
-                <Nav lassName="mr-auto">
+                <Nav className="ml-auto">
                     <Nav.Link><UserText/></Nav.Link>
                 </Nav>
             </Navbar.Collapse>
