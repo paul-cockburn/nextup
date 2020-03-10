@@ -21,6 +21,10 @@ class HelperHome extends React.Component {
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.getRequests = this.getRequests.bind(this);
+      this.oldestFirst = this.oldestFirst.bind(this);
+      this.newestFirst = this.newestFirst.bind(this);
+      this.highPriFirst = this.highPriFirst.bind(this);
+      this.lowPriFirst = this.lowPriFirst.bind(this);
 
     }
 
