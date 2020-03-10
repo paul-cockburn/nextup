@@ -4,80 +4,88 @@ import { Redirect } from "react-router-dom";
 
 
 class Redirector extends React.Component {
+    _isMounted = false;
     constructor(props) {
         super(props);
         this.state = {user: false, isStudent: false, isHelper: false, isCourseLeader: false};
     }
 
     componentDidMount(){
+        this._isMounted = true;
         var db = firebase.firestore();
-        var stateUser, stateIsStudent, stateIsHelper, stateIsCourseLeader;
-
+        var updatedUser = firebase.auth().currentUser;
         firebase.auth().onAuthStateChanged(user => {
-            if(!user){
-                stateUser, stateIsStudent, stateIsHelper, stateIsCourseLeader = false
-            } 
-            else if(user) {
-                if(this.state.isStudent === false){
-                    let studentRef = db.collection('students').doc(user.uid);
-                    let getDoc = studentRef.get()
-                    .then(doc => {
-                        if (!doc.exists) {
-                            console.log('No such document!');
-                        } else {
-                            stateUser, stateIsStudent = true;
-                        }
-                    })
-                    .catch(err => {
-                        console.log('Error getting document', err);
-                    });
-                }
-
-                if(this.state.isHelper === false){
-                    let helperRef = db.collection('helpers').doc(user.uid);
-                    let getDoc = helperRef.get()
-                    .then(doc => {
-                        if (!doc.exists) {
-                            console.log('No such document!');
-                        } else {
-                            stateUser, stateIsHelper = true;
-                        }
-                    })
-                    .catch(err => {
-                        console.log('Error getting document', err);
-                    });
-                }
-
-                if(this.state.isCourseLeader === false){
-                    let courseLeaderRef = db.collection('courseLeaders').doc(user.uid);
-                    let getDoc = courseLeaderRef.get()
-                    .then(doc => {
-                        if (!doc.exists) {
-                            console.log('No such document!');
-                        } else {
-                            stateUser, stateIsCourseLeader = true;
-                        }
-                    })
-                    .catch(err => {
-                        console.log('Error getting document', err);
-                    });
-                }
-            }
-            this.setState({user: stateUser, isStudent: stateIsStudent, isHelper: stateIsHelper, isCourseLeader: stateIsCourseLeader})
+            updatedUser = user;
         });
+        
+        if(!updatedUser && this.state.user !== false && this.state.isStudent !== false && this.state.isHelper !== false && this.state.isCourseLeader !== false){
+            if (this._isMounted) {
+                this.setState({user: false, isStudent: false, isHelper: false, isCourseLeader: false})
+            }
+        } 
+        else if(updatedUser) {
+            if(this.state.isStudent === false){
+                let studentRef = db.collection('students').doc(updatedUser.uid);
+                let getDoc = studentRef.get()
+                .then(doc => {
+                    if (!doc.exists) {
+                    console.log('No such document!');
+                    } else {
+                        if (this._isMounted) {
+                            this.setState({user: true, isStudent: true})
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.log('Error getting document', err);
+                });
+            }
+
+            if(this.state.isHelper === false){
+                let helperRef = db.collection('helpers').doc(updatedUser.uid);
+                let getDoc = helperRef.get()
+                .then(doc => {
+                    if (!doc.exists) {
+                        console.log('No such document!');
+                    } else {
+                        if (this._isMounted) {
+                            this.setState({user: true, isHelper: true})
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.log('Error getting document', err);
+                });
+            }
+
+            if(this.state.isCourseLeader === false){
+                let courseLeaderRef = db.collection('courseLeaders').doc(updatedUser.uid);
+                let getDoc = courseLeaderRef.get()
+                .then(doc => {
+                    if (!doc.exists) {
+                        console.log('No such document!');
+                    } else {
+                        if (this._isMounted) {
+                            this.setState({user: true, isCourseLeader: true})
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.log('Error getting document', err);
+                });
+            }
+        }
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+    
+
     render () {
-        if(!this.state.user){
-            return (
-                <Redirect
-                    to={{
-                        pathname: "/"
-                    }}
-                />
-            )
-        } 
-        else if(this.state.isCourseLeader) {
+        
+        if(this.state.isCourseLeader || this.state.isHelper) {
+            console.log("WHAT")
             return (
                 <Redirect
                     to={{
@@ -86,6 +94,16 @@ class Redirector extends React.Component {
                 />
             )
         }
+        if(!this.state.user){
+            console.log("NO IUSERRRS")
+            return (
+                <Redirect
+                    to={{
+                        pathname: "/"
+                    }}
+                />
+            )
+        } 
     }
   }
 
