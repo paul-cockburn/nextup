@@ -145,7 +145,7 @@ class Overview extends React.Component {
 
             <h2>Deleted Requests <Badge variant="info">{this.state.deletedTotal}</Badge></h2>
 
-            <ReturnCards requests={this.state.deletedReqs}sortBy={this.state.sortBy}/>
+            <ReturnCards requests={this.state.deletedReqs} sortBy={this.state.sortBy}/>
 
         </div>
       );
