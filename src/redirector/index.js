@@ -85,7 +85,6 @@ class Redirector extends React.Component {
 
     render () {
         if(!this.state.user){
-            console.log("NO IUSERRRS")
             return (
                 <Redirect
                     to={{
@@ -95,7 +94,6 @@ class Redirector extends React.Component {
             )
         } 
         if(this.state.isCourseLeader || this.state.isHelper) {
-            console.log("WHAT1")
             return (
                 <Redirect
                     to={{
@@ -105,7 +103,6 @@ class Redirector extends React.Component {
             )
         }
         if(this.state.isStudent) {
-            console.log("WHAT2", this.state)
             return (
                 <Redirect
                     to={{
