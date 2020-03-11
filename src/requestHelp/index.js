@@ -24,6 +24,12 @@ class RequestHelp extends React.Component {
     }
 
     componentDidMount(){
+      firebase.auth().onAuthStateChanged(user => {
+        if(user){
+          this.setState({requestUser: user.email})
+        }
+      });
+
       if(!this.state.requestTime){
         var d = new Date();
         var dateTime = (d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()).toString();
@@ -65,7 +71,6 @@ class RequestHelp extends React.Component {
     handleSubmit(event) {
       event.preventDefault();
       var db = firebase.firestore();
-
       db.collection("requests").add(this.state)
 
       .then(function(docRef) {
@@ -89,11 +94,6 @@ class RequestHelp extends React.Component {
             <h1>Request Help</h1>
             
             <Form onSubmit={this.handleSubmit}>
-              <Form.Group controlId="requestUser">
-                  <Form.Label>Email Address</Form.Label>
-                  <Form.Control value={this.state.requestUser} type="email" placeholder="Enter email address" onChange={this.handleChange} />
-              </Form.Group>
-
               <Form.Group controlId="requestDescription">
                   <Form.Label>Description</Form.Label>
                   <Form.Control value={this.state.requestDescription} as="textarea" rows="3" placeholder="Describe why you are requesting help" onChange={this.handleChange} />
