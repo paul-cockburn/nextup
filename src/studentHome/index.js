@@ -24,27 +24,50 @@ class StudentHome extends React.Component {
 
     getRequests(){
       var db = firebase.firestore();
-        let requestsRef = db.collection('requests');
-        let getCol = requestsRef.where('requestUser', '==', firebase.auth().currentUser.email).get()
-        .then(snapshot => {
-            if (snapshot.empty) {
-            console.log('No matching documents.');
-            return;
-            }  
-            var documents  = {}
-            snapshot.forEach(doc => {
-                console.log(doc.id, '=>', doc.data());
-                var docKey = doc.id
-                var docVal = doc.data()
-                documents[docKey] = docVal
-            });
-            var stateObject = {}
-            stateObject["requests"] = documents
-            this.setState(stateObject)
-        })
-        .catch(err => {
-            console.log('Error getting documents', err);
-        });
+      let requestsRef = db.collection('requests');
+      let getCol = requestsRef.where('requestUser', '==', firebase.auth().currentUser.email).get()
+      .then(snapshot => {
+          if (snapshot.empty) {
+          console.log('No matching documents.');
+          return;
+          }  
+          var documents  = {}
+          var waitingReqs  = {}
+          var inProgReqs  = {}
+          var completedReqs  = {}
+          var deletedReqs  = {}
+          snapshot.forEach(doc => {
+              var docKey = doc.id
+              var docVal = doc.data()
+              documents[docKey] = docVal
+              if(doc.data().requestStatus==="Waiting"){
+                waitingReqs[docKey] = docVal
+                this.setState({waitingTotal: this.state.waitingTotal+1})
+              }
+              if(doc.data().requestStatus==="In Progress"){
+                inProgReqs[docKey] = docVal
+                this.setState({inProgTotal: this.state.inProgTotal+1})
+              }
+              if(doc.data().requestStatus==="Completed"){
+                completedReqs[docKey] = docVal
+                this.setState({completedTotal: this.state.completedTotal+1})
+              }
+              if(doc.data().requestStatus==="Deleted"){
+                deletedReqs[docKey] = docVal
+                this.setState({deletedTotal: this.state.completedTotal+1})
+              }
+          });
+          var stateObject = {}
+          stateObject["requests"] = documents
+          stateObject["waitingReqs"] = waitingReqs
+          stateObject["inProgReqs"] = inProgReqs
+          stateObject["completedReqs"] = completedReqs
+          stateObject["deletedReqs"] = deletedReqs
+          this.setState(stateObject)
+      })
+      .catch(err => {
+          console.log('Error getting documents', err);
+      });
     }
 
     componentDidMount(){
@@ -61,15 +84,6 @@ class StudentHome extends React.Component {
     }
 
     render () {
-      // if(!firebase.auth().currentUser){
-      //   return (
-      //     <Redirect
-      //         to={{
-      //             pathname: "/"
-      //         }}
-      //     />
-      //   )
-      // }
       return (
           <div className="page-content">
             <h1>Home</h1>
@@ -78,9 +92,13 @@ class StudentHome extends React.Component {
                     Request help
                 </Button>
             </Link>
-            <h2>Your Requests</h2>
+            <h2>Your Requests In Progress</h2>
 
-            <ReturnCards requests={this.state.requests}/>
+            <ReturnCards requests={this.state.inProgReqs}/>
+
+            <h2>Your Queued Requests</h2>
+
+            <ReturnCards requests={this.state.waitingReqs}/>
             
         </div>
       );
