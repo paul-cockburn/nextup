@@ -84,7 +84,7 @@ class RequestCard extends React.Component {
 
                     Request ID: {this.props.requestId}
                     { this.props.studentCard ? 
-                        <Button variant="primary" onClick={this.handleEdit}>Edit</Button>
+                        <Button variant="primary" size="sm" onClick={this.handleEdit}>Edit</Button>
                     : null } 
                 </Accordion.Toggle>
                 </Card.Header>
