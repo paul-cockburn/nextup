@@ -151,7 +151,7 @@ class HelperHome extends React.Component {
                 requestHelper = {requests[requestKey].requestHelper}
                 helperCard = {true}
                 studentCard = {false}
-                helper = {currentUser}
+                requestHelper = {currentUser}
             />
         ))}
         </Accordion>

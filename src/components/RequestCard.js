@@ -28,7 +28,7 @@ class RequestCard extends React.Component {
 
         let setWithOptions = cityRef.set({
             requestStatus: "In Progress",
-            requestHelper: this.props.helper
+            requestHelper: this.props.requestHelper
         }, {merge: true}).then(()=>{
             window.location.reload(false);
         });
