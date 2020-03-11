@@ -48,7 +48,7 @@ class HelperHome extends React.Component {
                   waitingReqs[docKey] = docVal
                   this.setState({waitingTotal: this.state.waitingTotal+1})
                 }
-                if(doc.data().requestStatus==="In Progress" && doc.data().requestHelper==="helper@hw.ac.uk"){
+                if(doc.data().requestStatus==="In Progress" && doc.data().requestHelper===this.state.currentUser){
                   inProgReqs[docKey] = docVal
                 }
             });
@@ -65,6 +65,9 @@ class HelperHome extends React.Component {
     }
 
     componentDidMount(){
+      firebase.auth().onAuthStateChanged(user => {
+        this.setState({currentUser: user.email})
+      });
       this.getRequests();
     }
     handleChange(event) {
@@ -103,7 +106,7 @@ class HelperHome extends React.Component {
             <h1>Home</h1>
             <h2>Your Active Requests</h2>
 
-            <ReturnCards requests={this.state.inProgReqs}/>
+            <ReturnCards requests={this.state.inProgReqs} currentUser={this.state.currentUser}/>
 
             <h2>Requests Waiting <Badge variant="info">{this.state.waitingTotal}</Badge></h2>
 
@@ -120,14 +123,14 @@ class HelperHome extends React.Component {
               </Dropdown.Menu>
             </Dropdown>
 
-            <ReturnCards requests={this.state.waitingReqs}/>
+            <ReturnCards requests={this.state.waitingReqs} currentUser={this.state.currentUser}/>
 
         </div>
       );
     }
   }
 
-  function ReturnCards({ requests }) {
+  function ReturnCards({ requests, currentUser }) {
     if (!requests) {
       return <p>No requests</p>;
     }
@@ -148,6 +151,7 @@ class HelperHome extends React.Component {
                 requestHelper = {requests[requestKey].requestHelper}
                 helperCard = {true}
                 studentCard = {false}
+                helper = {currentUser}
             />
         ))}
         </Accordion>
