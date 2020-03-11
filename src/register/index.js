@@ -29,7 +29,9 @@ class Register extends React.Component {
         event.preventDefault();
         var db = firebase.firestore();
 
-        if(this.state.showHelperPass && this.state.helperPassword !== "helper1821") {
+        if(!(this.state.showStudentPass || this.state.showHelperPass || this.state.showLeaderPass)){
+            alert("Please choose a role.")
+        }else if(this.state.showHelperPass && this.state.helperPassword !== "helper1821") {
             alert("Wrong helper password!")
         }else if(this.state.showLeaderPass && this.state.courseLeaderPassword !=="leader1821"){
             alert("Wrong course leader password")
@@ -38,7 +40,7 @@ class Register extends React.Component {
                 // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                alert(errorCode, ": ", errorMessage)
+                alert(errorMessage)
                 // ...
             }).then(() => {
                 var user = firebase.auth().currentUser;
