@@ -27,7 +27,7 @@ class Login extends React.Component {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            alert(errorCode, ": ", errorMessage)
+            alert(errorMessage)
             // ...
         }).then(() => {
             var user = firebase.auth().currentUser;
