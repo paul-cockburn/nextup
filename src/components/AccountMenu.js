@@ -2,7 +2,7 @@ import React from 'react';
 import * as firebase from "firebase";
 import { Nav, Navbar, Image } from 'react-bootstrap';
 import UserText from "./UserText";
-import NUlogo from "../logo_cropped.png";
+import NUlogo from "../logo_transparent_cropped.png";
 import { Link } from "react-router-dom";
 
 
@@ -64,7 +64,7 @@ class AccountMenu extends React.Component {
 
         return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Navbar.Brand href="#home"><Image src={NUlogo} className="img-logo-nav" roundedCircle /></Navbar.Brand>
+            <Navbar.Brand href="#home"><Image src={NUlogo} className="img-logo-nav" /></Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
 
