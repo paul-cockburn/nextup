@@ -12,6 +12,7 @@ import HelperHome from './helperHome';
 import Overview from './overview';
 import Statistics from './statistics';
 import Redirector from './redirector';
+import ColorManagement from './colorManagement';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -35,6 +36,7 @@ class App extends React.Component {
             <Row>
               <Col></Col>
               <Col lg={5} md={12}>
+                <Route path="/" component={ColorManagement} />
                 <Route path="/" component={Redirector} />
                 <Route path="/" component={AccountMenu}  />
                 <Route path="/" exact component={Register}  />

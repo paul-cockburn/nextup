@@ -125,6 +125,7 @@ class StudentHome extends React.Component {
                 requestStatus = {requests[requestKey].requestStatus}
                 helperCard = {false}
                 studentCard = {true}
+                cardColor = {requests[requestKey].cardColor}
             />
         ))}
         </Accordion>

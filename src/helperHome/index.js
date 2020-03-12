@@ -152,6 +152,7 @@ class HelperHome extends React.Component {
                 helperCard = {true}
                 studentCard = {false}
                 requestHelper = {currentUser}
+                cardColor = {requests[requestKey].cardColor}
             />
         ))}
         </Accordion>

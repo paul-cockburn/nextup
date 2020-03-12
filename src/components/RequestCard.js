@@ -61,7 +61,12 @@ class RequestCard extends React.Component {
     }
   
     render () {
+        console.log("CARD COLOR PROPS", this.props.cardColor)
+        var cardColor = this.props.cardColor
         const editRedirect = this.state.editRedirect;
+        const headerStyle = {
+            backgroundColor: cardColor,
+        };
         if (editRedirect) {
             return (
                 <Redirect
@@ -79,7 +84,7 @@ class RequestCard extends React.Component {
         }
         return (
             <Card>
-                <Card.Header as="h5">
+                <Card.Header as="h5" style={headerStyle}>
                 <Accordion.Toggle as={Button} variant="link" eventKey={this.props.requestId}>
 
                     Request ID: {this.props.requestId}

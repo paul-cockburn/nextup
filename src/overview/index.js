@@ -193,6 +193,8 @@ class Overview extends React.Component {
               requestPriority = {requestsSorted[requestKey].requestPriority}
               requestStatus = {requestsSorted[requestKey].requestStatus}
               requestUser = {requestsSorted[requestKey].requestUser}
+              requestHelper = {requestsSorted[requestKey].requestHelper}
+              cardColor = {requestsSorted[requestKey].cardColor}
             />
         ))}
         </Accordion>
