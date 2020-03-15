@@ -2,6 +2,7 @@ import * as firebase from "firebase";
 import React from 'react';
 import { Redirect } from "react-router-dom";
 import * as moment from "moment";
+import * as color from "color";
 
 
 class ColorManagement extends React.Component {
@@ -108,6 +109,7 @@ class ColorManagement extends React.Component {
     }
 
     updateCardColors(){
+        var Color = require('color');
         var clonedWaitingReqs = { ...this.state.waitingReqs };
 
         var reqsArray = Object.values(clonedWaitingReqs);
@@ -129,7 +131,7 @@ class ColorManagement extends React.Component {
             );
         })
 
-        moment.defaultFormat = "DD.MM.YYYY HH:mm";
+        moment.defaultFormat = "DD.MM.YYYY HH:mm:ss";
         var oldestDate = new Date(moment(reqsArray[0].requestTime, moment.defaultFormat).toDate())
         var newestDate = new Date(moment(reqsArray[reqsArray.length-1].requestTime, moment.defaultFormat).toDate())
         var oldestTime = oldestDate.getTime()
@@ -141,17 +143,21 @@ class ColorManagement extends React.Component {
                 var reqDate = new Date(moment(req.requestTime, moment.defaultFormat).toDate())
                 var reqTime = reqDate.getTime()
                 var reqPriorityVal
+                //priority has half the influence that time has
                 if(req.requestPriority === "low"){
-                    reqPriorityVal = 0
-                }else if(req.requestPriority === "medium"){
                     reqPriorityVal = 60
+                }else if(req.requestPriority === "medium"){
+                    reqPriorityVal = 30
                 } else {
-                    reqPriorityVal = 120
+                    reqPriorityVal = 0
                 }
-                var hVal = Math.round(((((reqTime-oldestTime)/timeRange)*120)+reqPriorityVal)/2)
-                var hslString = "hsl(".concat(String(hVal), ", 100%, 45%)")
+                //divide by three then times by two to turn 180 into 120 for hsl value
+                var hVal = Math.round((((((reqTime-oldestTime)/timeRange)*120)+reqPriorityVal)/3)*2)
+                var hslString = "hsl(".concat(String(hVal), ", 100%, 75%)")
+                var color = Color(hslString)
+                console.log((reqTime-oldestTime)/timeRange, reqDate.getSeconds())
                 if(req.cardColor !== hslString){
-                    batch.update(db.collection('requests').doc(req.requestId), {cardColor: hslString});
+                    batch.update(db.collection('requests').doc(req.requestId), {cardColor: hslString, hVal: hVal});
                     valsMatch = false;
                 }
                 console.log(valsMatch)
