@@ -38,10 +38,13 @@ class RequestCard extends React.Component {
     handleDone(){
         var db = firebase.firestore();
 
-        let cityRef = db.collection('requests').doc(this.props.requestId);
+        var d = new Date();
+        var dateTime = (d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()).toString();
 
-        let setWithOptions = cityRef.set({
-            requestStatus: "Completed"
+        let requestRef = db.collection('requests').doc(this.props.requestId);
+
+        let setWithOptions = requestRef.set({
+            requestStatus: "Completed", requestTimeDone: dateTime
         }, {merge: true}).then(()=>{
             window.location.reload(false);
         });
