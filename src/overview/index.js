@@ -20,12 +20,13 @@ class Overview extends React.Component {
         inProgTotal: 0,
         completedTotal: 0,
         deletedTotal: 0,
-        sortBy: "oldestFirst",
+        sortBy: "recommended",
       };
   
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.getRequests = this.getRequests.bind(this);
+      this.recommended = this.recommended.bind(this);
       this.oldestFirst = this.oldestFirst.bind(this);
       this.newestFirst = this.newestFirst.bind(this);
       this.highPriFirst = this.highPriFirst.bind(this);
@@ -91,6 +92,12 @@ class Overview extends React.Component {
     handleSubmit(event) {
     }
 
+    recommended(){
+      this.setState({
+        sortBy: "recommended"
+      })
+    }
+
     oldestFirst(){
       this.setState({
         sortBy: "oldestFirst"
@@ -126,6 +133,7 @@ class Overview extends React.Component {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
+                <Dropdown.Item onClick={this.recommended}>Recommended</Dropdown.Item>
                 <Dropdown.Item onClick={this.oldestFirst}>Oldest first</Dropdown.Item>
                 <Dropdown.Item onClick={this.newestFirst}>Newest first</Dropdown.Item>
                 <Dropdown.Item onClick={this.highPriFirst}>Highest priority first</Dropdown.Item>
@@ -170,6 +178,10 @@ class Overview extends React.Component {
       }else if(sortBy === "newestFirst"){
         return (
           (bDate.getTime())-(aDate.getTime())
+        );      
+      }else if(sortBy === "recommended"){
+        return (
+          (a.hVal-b.hVal)
         );      
       }
     })

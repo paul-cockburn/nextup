@@ -153,7 +153,7 @@ class ColorManagement extends React.Component {
                 }
                 //divide by three then times by two to turn 180 into 120 for hsl value
                 var hVal = Math.round((((((reqTime-oldestTime)/timeRange)*120)+reqPriorityVal)/3)*2)
-                var hslString = "hsl(".concat(String(hVal), ", 100%, 75%)")
+                var hslString = "hsl(".concat(String(hVal), ", 100%, 85%)")
                 var color = Color(hslString)
                 console.log((reqTime-oldestTime)/timeRange, reqDate.getSeconds())
                 if(req.cardColor !== hslString){
