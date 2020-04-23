@@ -15,19 +15,19 @@ class Statistics extends React.Component {
                 <Card>
                   <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                      Average wait time
+                    <strong>Average wait time: </strong>16m 18s
                     </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="0">
                   <Card.Body>
                     <Card.Text>
-                      <strong>Low priority: </strong>{}
+                      <strong>Low priority: </strong>26m 37s
                     </Card.Text>
                     <Card.Text>
-                      <strong>Medium priority: </strong>{}
+                      <strong>Medium priority: </strong>16m 29s
                     </Card.Text>
                     <Card.Text>
-                      <strong>High priority: </strong>{}
+                      <strong>High priority: </strong>5m 49s
                     </Card.Text>
                   </Card.Body>
                   </Accordion.Collapse>
@@ -35,19 +35,19 @@ class Statistics extends React.Component {
                 <Card>
                   <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                    Average resolved requests per session
+                    <strong>Average resolved requests per session: </strong>13
                     </Accordion.Toggle>
                   </Card.Header>
                     <Accordion.Collapse eventKey="1">
                   <Card.Body>
                     <Card.Text>
-                      <strong>Low priority: </strong>{}
+                      <strong>Low priority: </strong>3
                     </Card.Text>
                     <Card.Text>
-                      <strong>Medium priority: </strong>{}
+                      <strong>Medium priority: </strong>16
                     </Card.Text>
                     <Card.Text>
-                      <strong>High priority: </strong>{}
+                      <strong>High priority: </strong>20
                     </Card.Text>
                   </Card.Body>
                   </Accordion.Collapse>
@@ -55,19 +55,19 @@ class Statistics extends React.Component {
                 <Card>
                   <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                      Average remaining requests per session
+                    <strong>Average remaining requests per session: </strong>9.6
                     </Accordion.Toggle>
                     </Card.Header>
                     <Accordion.Collapse eventKey="2">
                   <Card.Body>
                     <Card.Text>
-                      <strong>Low priority: </strong>{}
+                      <strong>Low priority: </strong>16
                     </Card.Text>
                     <Card.Text>
-                      <strong>Medium priority: </strong>{}
+                      <strong>Medium priority: </strong>9
                     </Card.Text>
                     <Card.Text>
-                      <strong>High priority: </strong>{}
+                      <strong>High priority: </strong>4
                     </Card.Text>
                   </Card.Body>
                   </Accordion.Collapse>
@@ -75,19 +75,19 @@ class Statistics extends React.Component {
                 <Card>
                   <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                      Resolved requests rate (requests/hour)
+                    <strong>Resolved requests rate (requests/hour): </strong>6.5/hour
                     </Accordion.Toggle>
                     </Card.Header>
                   <Accordion.Collapse eventKey="3">
                   <Card.Body>
                     <Card.Text>
-                      <strong>Low priority: </strong>{}
+                      <strong>Low priority: </strong>1.5/hour
                     </Card.Text>
                     <Card.Text>
-                      <strong>Medium priority: </strong>{}
+                      <strong>Medium priority: </strong>8/hour
                     </Card.Text>
                     <Card.Text>
-                      <strong>High priority: </strong>{}
+                      <strong>High priority: </strong>10/hour
                     </Card.Text>
                   </Card.Body>
                   </Accordion.Collapse>

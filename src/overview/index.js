@@ -136,8 +136,8 @@ class Overview extends React.Component {
                 <Dropdown.Item onClick={this.recommended}>Recommended</Dropdown.Item>
                 <Dropdown.Item onClick={this.oldestFirst}>Oldest first</Dropdown.Item>
                 <Dropdown.Item onClick={this.newestFirst}>Newest first</Dropdown.Item>
-                <Dropdown.Item onClick={this.highPriFirst}>Highest priority first</Dropdown.Item>
-                <Dropdown.Item onClick={this.lowPriFirst}>Lowest priority first</Dropdown.Item>
+                {/* <Dropdown.Item onClick={this.highPriFirst}>Highest priority first</Dropdown.Item>
+                <Dropdown.Item onClick={this.lowPriFirst}>Lowest priority first</Dropdown.Item> */}
               </Dropdown.Menu>
             </Dropdown>
 
